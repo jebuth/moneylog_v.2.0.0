@@ -1,7 +1,11 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, TextInput} from 'react-native';
 
-const Form = () => {
+const Form = ({props}) => {
+
+    
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -30,7 +34,7 @@ const Form = () => {
 
             <TouchableOpacity
                 style={styles.button}
-                u
+                // onPress={() => navigation.navigate('SheetSelection')}
                 >
                 <Text style={styles.buttonText}>Spent</Text>
             </TouchableOpacity>

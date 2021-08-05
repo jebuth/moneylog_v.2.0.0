@@ -13,7 +13,7 @@ const Log = ({navigation}) => {
             </View>
 
             <View style={styles.formContainer}>
-                <Form />
+                <Form navigation={navigation}/>
             </View>
 
             <View style={styles.transactionsContainer}>

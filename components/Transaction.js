@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        
         padding: 10,
         margin: 2,
         borderRadius: 10,
@@ -46,15 +45,15 @@ const styles = StyleSheet.create({
         
     },
     categoryText:{
-        paddingRight: 100,
+        paddingRight: 150,
         fontWeight: 'bold',
-        fontSize: 24,
+        fontSize: 16,
         color: '#C3C3C3', // good white
         //color: '#44d4a4' // good green
     },
     amountText:{
         fontWeight: 'bold',
-        fontSize: 24,
+        fontSize: 16,
         color: '#Ca3e47',
     }
 

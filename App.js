@@ -5,10 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SignIn from './components/SignIn';
 import Log from './components/Log';
+import SheetSelection from './components/SheetSelection';
 
 const Stack = createStackNavigator();
-
-
 
 const App: () => Node = () => {
   return (
@@ -16,7 +15,7 @@ const App: () => Node = () => {
     <StatusBar barStyle="dark-content" hidden/>
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='Log'
+        initialRouteName='SheetSelection'
         screenOptions={{
           headerMode: 'screen',
         }}
@@ -29,9 +28,13 @@ const App: () => Node = () => {
         <Stack.Screen
           name='Log'
           component={Log}
-          
-          
         />
+
+        <Stack.Screen
+          name='SheetSelection'
+          component={SheetSelection}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
     </>
