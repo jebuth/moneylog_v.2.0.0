@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
    container:{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#000'
    },
    button:{
         padding: 10,
-        backgroundColor: '#DDDDDD'
+        backgroundColor: '#44D4A4',
    }  
 });
 

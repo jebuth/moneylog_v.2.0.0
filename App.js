@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {Button, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SignIn from './components/SignIn';
@@ -10,6 +10,7 @@ import SheetSelection from './components/SheetSelection';
 const Stack = createStackNavigator();
 
 const App: () => Node = () => {
+
   return (
     <>
     <StatusBar barStyle="dark-content" hidden/>
@@ -17,17 +18,23 @@ const App: () => Node = () => {
       <Stack.Navigator
         initialRouteName='SheetSelection'
         screenOptions={{
-          headerMode: 'screen',
+          headerStyle:{
+            backgroundColor: '#000'
+          } 
         }}
       >
         <Stack.Screen
           name='SignIn'
           component={SignIn}
+          options={{
+            headerShown: false
+          }}
         />
 
         <Stack.Screen
           name='Log'
           component={Log}
+          
         />
 
         <Stack.Screen
