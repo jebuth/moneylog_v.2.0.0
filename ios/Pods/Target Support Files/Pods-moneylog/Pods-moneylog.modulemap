@@ -1,0 +1,6 @@
+module Pods_moneylog {
+  umbrella header "Pods-moneylog-umbrella.h"
+
+  export *
+  module * { export * }
+}
