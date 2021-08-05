@@ -32,25 +32,30 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         
-        
     },
     transaction:{
         paddingTop: 10,
         paddingBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderColor: 'black',
-        borderWidth: 4,
+        
+        padding: 10,
+        margin: 2,
+        borderRadius: 10,
+        backgroundColor: '#181818'
         
     },
     categoryText:{
         paddingRight: 100,
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 24,
+        color: '#C3C3C3', // good white
+        //color: '#44d4a4' // good green
     },
     amountText:{
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 24,
+        color: '#Ca3e47',
     }
 
     

@@ -30,29 +30,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor: '#232A28',
+    backgroundColor: '#000',
     padding: 10
    },
    headerContainer: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#121212',
+    borderRadius: 20,
+    
    },
    formContainer:{
     flex: 2,
-    backgroundColor: 'red',
+    backgroundColor: '#121212',
     justifyContent: 'center',
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    top: 10
     // borderBottomLeftRadius: 20,
     // borderBottomRightRadius: 20
    },
    transactionsContainer: {
     flex: 2,
-    backgroundColor: 'blue',
+    backgroundColor: '#121212',
     // borderTopLeftRadius: 20,
     // borderTopRightRadius: 20,
     borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40
+    borderBottomRightRadius: 40,
+    paddingBottom: 40,
+    
    }
 });
 

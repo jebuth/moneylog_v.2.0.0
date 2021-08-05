@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>October 2021</Text>
-            <Text style={styles.totalText}>$4002.00</Text>
+            <Text style={styles.totalText}>$4,002.00</Text>
         </View>
     
     );
@@ -16,17 +16,18 @@ const styles = StyleSheet.create({
     container:{
         display: 'flex',
         flexDirection: 'column',
-        borderColor: 'green',
-        borderWidth: 2
-        // justifyContent: 'center'
     },
     titleText: {
-        borderColor: 'white',
-        borderWidth: 1
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#C3C3C3',
+        paddingLeft: 20,
     },
     totalText: {
-        borderColor: 'white',
-        borderWidth: 1
+        fontSize: 34,
+        fontWeight: 'bold',
+        color: '#C3C3C3',
+        paddingLeft: 20
     }
 });
 

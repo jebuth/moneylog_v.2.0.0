@@ -7,6 +7,7 @@ const Form = () => {
             <TextInput
                 style={styles.amountInput}
                 placeholder='$0.00'
+                placeholderTextColor='#E3E3E3'
                 textAlign='left'
                 selectTextOnFocus={true}>
             </TextInput>
@@ -14,13 +15,15 @@ const Form = () => {
             <TextInput
                 style={styles.descriptionInput}
                 placeholder='description'
+                placeholderTextColor='#E3E3E3'
                 textAlign='left'
                 selectTextOnFocus={true}>
             </TextInput>
 
             <TextInput
                 style={styles.categoryInput}
-                placeholder='description'
+                placeholder='category'
+                placeholderTextColor='#E3E3E3'
                 textAlign='left'
                 selectTextOnFocus={true}>
             </TextInput>
@@ -29,7 +32,7 @@ const Form = () => {
                 style={styles.button}
                 u
                 >
-                <Text style={styles.buttonText}>Log</Text>
+                <Text style={styles.buttonText}>Spent</Text>
             </TouchableOpacity>
             
         </View>
@@ -44,38 +47,45 @@ const styles = StyleSheet.create({
     },
     amountInput: {
         fontSize: 16,
-        borderWidth: 2,
-        borderColor: 'white',
+        color: '#E3E3E3',
+        // borderColor: 'white',
         borderRadius: 10,
         width: '50%',
         height: 50,
         padding: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: '#282828'
     },
     descriptionInput: {
         fontSize: 16,
-        borderWidth: 2,
-        borderColor: 'white',
+        color: '#E3E3E3',
+        // borderWidth: 2,
+        // borderColor: 'white',
         borderRadius: 10,
         width: '50%',
         height: 50,
         padding: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: '#282828'
     },
     categoryInput: {
         fontSize: 16,
-        borderWidth: 2,
-        borderColor: 'white',
+        color: '#E3E3E3',
+        // borderWidth: 2,
+        // borderColor: 'white',
         borderRadius: 10,
         width: '50%',
         height: 50,
         padding: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: '#282828'
     },
     button: {
-        fontSize: 16,
+        justifyContent: 'center',
+        
         borderWidth: 2,
-        borderColor: 'white',
+        //borderColor: 'white',
+        backgroundColor: '#44d4a4',
         borderRadius: 50,
         width: '50%',
         height: 50,
@@ -83,7 +93,9 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         textAlign: 'center',
-        justifyContent: 'center'
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#FFF'
     }
 });
 
