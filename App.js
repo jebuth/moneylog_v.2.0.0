@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SignIn from './components/SignIn';
 import Log from './components/Log';
 import SheetSelection from './components/SheetSelection';
+import GoogleSignInPage from './components/GoogleSignInPage';
 
 const Stack = createStackNavigator();
 
@@ -16,13 +17,21 @@ const App: () => Node = () => {
     <StatusBar barStyle="dark-content" hidden/>
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='SheetSelection'
+        initialRouteName='GoogleSignInPage'
         screenOptions={{
           headerStyle:{
             backgroundColor: '#000'
           } 
         }}
       >
+        <Stack.Screen
+          name='GoogleSignInPage'
+          component={GoogleSignInPage}
+          options={{
+            headerShown: false
+          }}
+        />
+        
         <Stack.Screen
           name='SignIn'
           component={SignIn}

@@ -12,6 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		291F642726BCB4C200BF9C24 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 291F642626BCB4C200BF9C24 /* libRNGoogleSignin.a */; };
+		291F642926BCB4D200BF9C24 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291F642826BCB4D200BF9C24 /* AddressBook.framework */; };
+		291F642B26BCB4E200BF9C24 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291F642A26BCB4E200BF9C24 /* SafariServices.framework */; };
+		291F642D26BCB4EC00BF9C24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291F642C26BCB4EC00BF9C24 /* SystemConfiguration.framework */; };
+		291F642F26BCB4F900BF9C24 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 291F642E26BCB4F900BF9C24 /* libz.tbd */; };
 		4C712CE889952E029FF826EA /* libPods-moneylog-moneylogTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1A71FFC55513BF93877365 /* libPods-moneylog-moneylogTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -36,6 +41,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = moneylog/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = moneylog/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = moneylog/main.m; sourceTree = "<group>"; };
+		291F642626BCB4C200BF9C24 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		291F642826BCB4D200BF9C24 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		291F642A26BCB4E200BF9C24 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		291F642C26BCB4EC00BF9C24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		291F642E26BCB4F900BF9C24 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5E869EF569931267BD7A9C87 /* Pods-moneylog-moneylogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneylog-moneylogTests.release.xcconfig"; path = "Target Support Files/Pods-moneylog-moneylogTests/Pods-moneylog-moneylogTests.release.xcconfig"; sourceTree = "<group>"; };
 		6422A9FA7B76B5F0D9941673 /* Pods-moneylog-moneylogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneylog-moneylogTests.debug.xcconfig"; path = "Target Support Files/Pods-moneylog-moneylogTests/Pods-moneylog-moneylogTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = moneylog/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				291F642F26BCB4F900BF9C24 /* libz.tbd in Frameworks */,
+				291F642D26BCB4EC00BF9C24 /* SystemConfiguration.framework in Frameworks */,
+				291F642B26BCB4E200BF9C24 /* SafariServices.framework in Frameworks */,
+				291F642926BCB4D200BF9C24 /* AddressBook.framework in Frameworks */,
+				291F642726BCB4C200BF9C24 /* libRNGoogleSignin.a in Frameworks */,
 				05DC5702C0E5BD68B08242F0 /* libPods-moneylog.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +114,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				291F642E26BCB4F900BF9C24 /* libz.tbd */,
+				291F642C26BCB4EC00BF9C24 /* SystemConfiguration.framework */,
+				291F642A26BCB4E200BF9C24 /* SafariServices.framework */,
+				291F642826BCB4D200BF9C24 /* AddressBook.framework */,
+				291F642626BCB4C200BF9C24 /* libRNGoogleSignin.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				B9E8263C8329442CC4FE9FEE /* libPods-moneylog.a */,
 				9E1A71FFC55513BF93877365 /* libPods-moneylog-moneylogTests.a */,
@@ -114,7 +134,6 @@
 				6422A9FA7B76B5F0D9941673 /* Pods-moneylog-moneylogTests.debug.xcconfig */,
 				5E869EF569931267BD7A9C87 /* Pods-moneylog-moneylogTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

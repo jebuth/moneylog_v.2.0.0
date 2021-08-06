@@ -26,4 +26,6 @@ target 'moneylog' do
   post_install do |installer|
     react_native_post_install(installer)
   end
+
+  pod 'GoogleSignIn', '~> 5.0.2'
 end
