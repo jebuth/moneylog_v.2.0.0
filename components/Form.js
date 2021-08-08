@@ -1,10 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, TextInput} from 'react-native';
+import {AuthContext} from '../services/AuthContext';
 
 const Form = ({props}) => {
 
-    
+    const {getFolder} = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
@@ -35,6 +36,7 @@ const Form = ({props}) => {
             <TouchableOpacity
                 style={styles.button}
                 // onPress={() => navigation.navigate('SheetSelection')}
+                onPress={() => {getFolder(1)}}
                 >
                 <Text style={styles.buttonText}>Spent</Text>
             </TouchableOpacity>

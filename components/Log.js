@@ -7,7 +7,6 @@ import Header from './Header';
 const Log = ({navigation}) => {
     return(
         <View style={styles.container}>
-
             <View style={styles.headerContainer}>
                 <Header />
             </View>

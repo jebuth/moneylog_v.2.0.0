@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TouchableOpacity, Text, FlatList} from 'react-native';
 import sheets from './SheetsDb';
 import NewSheetForm from './NewSheetForm';
+import SignOutButton from './SignOutButton';
+import {AuthContext} from '../services/AuthContext';
 
 const SheetSelection = ({navigation}) => {
     
+    const {signOut} = useContext(AuthContext);
+
     const SheetItem = ({item}) => {
         return (
             <View style={styles.sheetItem}>
@@ -14,6 +18,7 @@ const SheetSelection = ({navigation}) => {
                     >
                     <Text style={styles.sheetText}>{item.title}</Text>
                 </TouchableOpacity>
+                
             </View>
         );
     }
@@ -23,33 +28,44 @@ const SheetSelection = ({navigation}) => {
             <View style={styles.headerContainer}>
                 <NewSheetForm />
             </View>
+            {/* <TouchableOpacity style={styles.button} onPress={signOut}></TouchableOpacity> */}
             <FlatList 
             style={styles.listContainer}
             data={sheets}
             renderItem={SheetItem}
             keyExtractor={(item) => item.id}/>
+            <SignOutButton style={styles.signOutContainer} />
         </View>
     );    
 }
 
 const styles = StyleSheet.create({
+    button:{
+        height: 100,
+        width: 100,
+        backgroundColor: 'white'
+    },
    container:{
        display: 'flex',
        width: '100%',
        height: '100%',
        backgroundColor: '#000',
-       padding: 10
+       padding: 10,
+       alignContent: 'space-between',
    },
    headerContainer: {
-    flex: .09,
-    justifyContent: 'center'
+        flex: .09,
+        justifyContent: 'center'
    },
    listContainer:{
-    top: 20,
+    marginTop: 20,
+    marginBottom: 100,
+    
     flex: 1,
     width: '100%',
     flexDirection: 'column',
     borderRadius: 10,
+    
     // borderColor: 'pink',
     // borderWidth: 1
    },
@@ -74,6 +90,9 @@ const styles = StyleSheet.create({
         width: '100%',
         // borderColor: 'pink',
         // borderWidth: 2
+    },
+    signOutContainer:{
+        
     }
 });
 

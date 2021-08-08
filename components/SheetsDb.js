@@ -35,7 +35,42 @@ const sheets = [
         id: 9,
         title: 'Cali Trip 2019'
     },
-
+    {
+        id: 10,
+        title: 'Guns'
+    },
+    {   
+        id: 11,
+        title: 'Austin Trip 2020'
+    },
+    {
+        id: 12,
+        title: 'Robinhood Buys'
+    },
+    {
+        id: 13,
+        title: 'M1 Buys'
+    },
+    {   
+        id: 14,
+        title: 'Cali Trip 2019'
+    },
+    {   
+        id: 15,
+        title: 'Austin Trip 2020'
+    },
+    {
+        id: 16,
+        title: 'Robinhood Buys'
+    },
+    {
+        id: 17,
+        title: 'M1 Buys'
+    },
+    {   
+        id: 18,
+        title: 'Cali Trip 2019'
+    },
 ];
 
 export default sheets;
