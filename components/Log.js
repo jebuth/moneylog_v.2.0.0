@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text, ActivityIndicator} from 'react-native';
 import Transaction from './Transaction';
 import Form from './Form';
 import Header from './Header';
@@ -10,18 +10,28 @@ const Log = ({navigation}) => {
     const {state, actions} = useContext(AuthContext);
     
     return(
-        <View style={styles.container}>
-            <View style={styles.headerContainer}>
-                <Header title={state.focusedSheet.sheet.title}/>
-            </View>
+        
+        <View>
+            {console.log(state.focusedSheet)}
+            {state.focusedSheet !== null ?
+                <View style={styles.container}> 
+                    <View style={styles.headerContainer}>
+                    <Header 
+                        title={state.focusedSheet.sheet.title}
+                        total={state.focusedSheet.categories[0].total}
+                        />
+                    </View>
 
-            <View style={styles.formContainer}>
-                <Form navigation={navigation}/>
-            </View>
+                    <View style={styles.formContainer}>
+                        <Form navigation={navigation}/>
+                    </View>
 
-            <View style={styles.transactionsContainer}>
-                <Transaction transactions={state.focusedSheet} />
-            </View>
+                    <View style={styles.transactionsContainer}>
+                        <Transaction transactions={state.focusedSheet} />
+                    </View>
+                </View> : 
+                <ActivityIndicator/>}
+            
         </View>
     );    
 }

@@ -117,13 +117,13 @@ const GoogleSignInPage = () => {
                 response.files.forEach(file => {
                     sheets.push({
                         'id' : file.id,
-                        'title' : file.name
+                        'title' : file.name,
                     });
                 })
             }
 
-            getFocusedSheet(sheets[0]);
-            //console.log(sheets);
+            await getFocusedSheet(sheets[0]);
+            console.log('after getFocusedSheet()');
             
         } catch (error){
             console.log(error.response);
@@ -131,32 +131,38 @@ const GoogleSignInPage = () => {
     }
 
     const getFocusedSheet = async (sheet) => {
+        try{
+            console.log('getFocusedSheet');
+
+            await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                focusedSheet = {
+                    sheet: sheet,
+                    categories: data
+                }
+            }).catch((error) => {
+                console.log(error.response);
+            });
+    
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            user: googleUser,
+                            driveApi: driveApi,
+                            sheets: sheets,
+                            focusedSheet: focusedSheet,
+                            //total: '$666.66',
+                        }
+            })
+        } catch (error){
+            console.log(error.response);
+        }
         
-        console.log('getFocusedSheet');
-
-        await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            focusedSheet = {
-                sheet: sheet,
-                categories: data
-            }
-        });
-
-        actions(
-            {
-                type: 'setState', 
-                payload: 
-                    {
-                        ...state, 
-                        user: googleUser,
-                        driveApi: driveApi,
-                        sheets: sheets,
-                        focusedSheet: focusedSheet,
-                        total: '$666.66',
-                    }
-        })
     }
 
     return (

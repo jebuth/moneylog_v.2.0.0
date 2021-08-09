@@ -10,7 +10,7 @@ const Header = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>{props.title}</Text>
-            <Text style={styles.totalText}>{state.total}</Text>
+            <Text style={styles.totalText}>{props.total}</Text>
         </View>
     
     );

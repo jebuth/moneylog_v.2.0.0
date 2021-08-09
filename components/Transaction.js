@@ -22,7 +22,7 @@ const Transaction = (props) => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={props.transactions.categories}
+                data={props.transactions.categories.slice(1)}
                 renderItem={TransactionItem}
                 keyExtractor={(item) => item.category}
             />
