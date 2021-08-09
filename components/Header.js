@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
+import {AuthContext} from '../services/AuthContext';
+import useGlobalState from '../store/useGlobalState';
 
-const Header = () => {
+const Header = (props) => {
+    const {state, actions} = useContext(AuthContext);
+    
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>October 2021</Text>
-            <Text style={styles.totalText}>$4,002.00</Text>
+            <Text style={styles.titleText}>{props.title}</Text>
+            <Text style={styles.totalText}>{state.total}</Text>
         </View>
     
     );

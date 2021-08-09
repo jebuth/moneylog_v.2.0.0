@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import Transaction from './Transaction';
 import Form from './Form';
 import Header from './Header';
+import {AuthContext} from '../services/AuthContext';
 
 const Log = ({navigation}) => {
+
+    const {state, actions} = useContext(AuthContext);
+    
     return(
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Header />
+                <Header title={state.focusedSheet.sheet.title}/>
             </View>
 
             <View style={styles.formContainer}>
@@ -16,7 +20,7 @@ const Log = ({navigation}) => {
             </View>
 
             <View style={styles.transactionsContainer}>
-                <Transaction />
+                <Transaction transactions={state.focusedSheet} />
             </View>
         </View>
     );    

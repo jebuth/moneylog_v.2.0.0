@@ -2,7 +2,10 @@ import React from 'react';
 import {StyleSheet, View, Text, FlatList} from 'react-native';
 import transactions from './TransactionsDb';
 
-const Transaction = () => {
+const Transaction = (props) => {
+
+    console.log('Transaction');
+    console.log(props)
     const TransactionItem = ({item}) => {
         return (
             <View style={styles.transaction}>
@@ -10,7 +13,7 @@ const Transaction = () => {
                     <Text style={styles.categoryText}>{item.category}</Text>
                 </View>
                 <View>
-                    <Text style={styles.amountText}>{item.amount}</Text>
+                    <Text style={styles.amountText}>{item.total}</Text>
                 </View>
             </View>
         );
@@ -19,7 +22,7 @@ const Transaction = () => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={transactions}
+                data={props.transactions.categories}
                 renderItem={TransactionItem}
                 keyExtractor={(item) => item.category}
             />

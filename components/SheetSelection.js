@@ -4,10 +4,27 @@ import sheets from './SheetsDb';
 import NewSheetForm from './NewSheetForm';
 import SignOutButton from './SignOutButton';
 import {AuthContext} from '../services/AuthContext';
+//import useGlobalState from '../store/useGlobalState';
 
 const SheetSelection = ({navigation}) => {
     
-    const {signOut} = useContext(AuthContext);
+    //const {signOut} = useContext(AuthContext);
+    const {state, actions} = useContext(AuthContext);
+    const signOut = () => {
+        console.log('SheetSelection.signOut');
+        actions(
+            {
+                type: 'setState', 
+                payload: 
+                    {
+                        ...state, 
+                        user: null,
+                        ss_title: '',
+                        total: '',
+                        driveApi: null
+                    }
+        })
+    }
 
     const SheetItem = ({item}) => {
         return (
@@ -31,10 +48,12 @@ const SheetSelection = ({navigation}) => {
             {/* <TouchableOpacity style={styles.button} onPress={signOut}></TouchableOpacity> */}
             <FlatList 
             style={styles.listContainer}
-            data={sheets}
+            data={state.sheets}
             renderItem={SheetItem}
             keyExtractor={(item) => item.id}/>
-            <SignOutButton style={styles.signOutContainer} />
+            <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
+                <Text style={styles.signOutText}>Sign Out</Text>
+            </TouchableOpacity>
         </View>
     );    
 }
@@ -91,8 +110,18 @@ const styles = StyleSheet.create({
         // borderColor: 'pink',
         // borderWidth: 2
     },
-    signOutContainer:{
-        
+    signOutButton:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'green',
+        height: 50,
+        bottom: 50,
+        width: '100%',
+        borderRadius: 10
+    },
+    signOutText:{
+        fontWeight: 'bold',
+        color: 'white'
     }
 });
 

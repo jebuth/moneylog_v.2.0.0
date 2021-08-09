@@ -4,11 +4,11 @@ import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 const SignOutButton = () => {
 
     return (
-        <View style={styles.container}>
+        // <View style={styles.container}>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Sign Out</Text>
             </TouchableOpacity>
-        </View>
+        // </View>
     );
 };
 
