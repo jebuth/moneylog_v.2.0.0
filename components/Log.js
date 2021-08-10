@@ -8,6 +8,8 @@ import {AuthContext} from '../services/AuthContext';
 const Log = ({navigation}) => {
 
     const {state, actions} = useContext(AuthContext);
+    console.log('Log');
+    console.log(navigation);
     
     return(
         
@@ -16,9 +18,9 @@ const Log = ({navigation}) => {
             {state.focusedSheet !== null ?
                 <View style={styles.container}> 
                     <View style={styles.headerContainer}>
-                    <Header 
-                        title={state.focusedSheet.sheet.title}
-                        total={state.focusedSheet.categories[0].total}
+                        <Header 
+                            title={state.focusedSheet.sheet.title}
+                            total={state.focusedSheet.categories[0].total}
                         />
                     </View>
 
@@ -44,7 +46,8 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#000',
-    padding: 10
+    padding: 10,
+    
    },
    headerContainer: {
     flex: 1,

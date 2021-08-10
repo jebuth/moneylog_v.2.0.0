@@ -6,10 +6,11 @@ import { useEffect } from 'react/cjs/react.production.min';
 import {AuthContext} from '../services/AuthContext';
 import useGlobalState from '../store/useGlobalState';
 
-const Form = ({props}) => {
+const Form = ({props, navigation}) => {
     const {state, actions} = useContext(AuthContext);
     const globalState = useGlobalState();
-
+    console.log('Form.js');
+    console.log(navigation)
     return (
         <>
             {globalState.state.driveApi === null ? (
@@ -40,9 +41,8 @@ const Form = ({props}) => {
 
             <TouchableOpacity
                 style={styles.button}
-                // onPress={() => navigation.navigate('SheetSelection')}
-                // onPress={() => {getFolder(1)}}
-                onPress={() => actions({type: 'setState', payload: {...state, user: null}})}
+                onPress={() => navigation.navigate('SheetSelection')}
+                //onPress={() => actions({type: 'setState', payload: {...state, user: null}})}
                 >
                 <Text style={styles.buttonText}>Spent</Text>
             </TouchableOpacity> 

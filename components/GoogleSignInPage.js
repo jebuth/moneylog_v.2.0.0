@@ -107,6 +107,7 @@ const GoogleSignInPage = () => {
 
     const getSpreadSheets = async (driveFolder) => {
         console.log('getSpreadSheets');
+        
         try{
             let response = await driveApi.GDrive.files.list(
                 {
@@ -167,19 +168,13 @@ const GoogleSignInPage = () => {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.logo}>mongey_log</Text>
             <GoogleSigninButton
                 onPress={() => {signIn()}}
                 style={styles.button}
                 size={GoogleSigninButton.Size.Standard}
                 color={GoogleSigninButton.Color.Dark}    
             />
-            <TouchableOpacity
-                style={styles.testButton}
-                //onPress={() => actions({type: 'setState', payload: {...state, user: 3}})}
-                >
-
-                <Text>Test</Text>
-            </TouchableOpacity>
         </View>
     )
 }
@@ -191,8 +186,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#000'
     },
+    logo: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 30,
+        bottom: 40
+    },
     button:{
-        
+        borderRadius: 20
     },
     testButton: {
         backgroundColor: 'white'

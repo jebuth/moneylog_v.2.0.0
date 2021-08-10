@@ -4,7 +4,6 @@ import sheets from './SheetsDb';
 import NewSheetForm from './NewSheetForm';
 import SignOutButton from './SignOutButton';
 import {AuthContext} from '../services/AuthContext';
-//import useGlobalState from '../store/useGlobalState';
 
 const SheetSelection = ({navigation}) => {
     
@@ -26,12 +25,46 @@ const SheetSelection = ({navigation}) => {
         })
     }
 
+    const getFocusedSheet = async (sheet) => {
+        try{
+            console.log('getFocusedSheet');
+
+            let focusedSheet = null;
+            await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                focusedSheet = {
+                    sheet: sheet,
+                    categories: data
+                }
+            }).catch((error) => {
+                console.log(error.response);
+            });
+    
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            focusedSheet: focusedSheet,
+                        }
+            });
+
+            navigation.navigate('Log');
+        } catch (error){
+            console.log(error);
+        }
+        
+    }
+
     const SheetItem = ({item}) => {
         return (
             <View style={styles.sheetItem}>
                 <TouchableOpacity 
                     style={styles.sheetButton}
-                    onPress={() => navigation.navigate('Log')}
+                    onPress={() => {getFocusedSheet(item)}}
                     >
                     <Text style={styles.sheetText}>{item.title}</Text>
                 </TouchableOpacity>
@@ -50,7 +83,7 @@ const SheetSelection = ({navigation}) => {
             style={styles.listContainer}
             data={state.sheets}
             renderItem={SheetItem}
-            keyExtractor={(item) => item.id}/>
+            keyExtractor={(sheet) => sheet.id}/>
             <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
                 <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
