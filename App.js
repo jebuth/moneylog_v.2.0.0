@@ -3,6 +3,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer, NavigationHelpersContext, useNavigationContainerRef} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
 import Log from './components/Log';
 import SheetSelection from './components/SheetSelection';
 import GoogleSignInPage from './components/GoogleSignInPage';
@@ -14,41 +15,26 @@ const App: () => Node = () => {
   const Stack = createStackNavigator();
   const globalState = useGlobalState();
 
+  const Tab = createMaterialTopTabNavigator();
+
+  
+
   return (
      <AuthContext.Provider value={globalState}>
       <StatusBar barStyle="light-content" backgroundColor='white'/>
+      
       <NavigationContainer>
-      {globalState.state.user !== null ? (
-        <Stack.Navigator
-          initialRouteName='Log'
-          screenOptions={{
-            headerStyle:{
-              backgroundColor: '#000',
-              shadowColor: 'transparent',
-            },
-          }}
-        >
-        <Stack.Screen
-          name='Log'
-          component={Log}
-          options={{
-            title:'',
-          }}
-        />
-         
-        <Stack.Screen
-          name='SheetSelection'
-          component={SheetSelection}
-          options={{
-            title:'',
-            headerLeft: () => {}
-          }}
-          
-        />
-      </Stack.Navigator>
-      ) : 
+        {globalState.state.user !== null ? (
+          <Tab.Navigator
+            tabBar={() => false}
+          >
+            <Tab.Screen name="Log" component={Log} />
+            <Tab.Screen name="SheetSelection" component={SheetSelection} />
+          </Tab.Navigator>
+        ) : 
           <GoogleSignInPage/>
-      } 
+        }
+        
       </NavigationContainer>
     </AuthContext.Provider> 
   );
