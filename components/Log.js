@@ -9,7 +9,7 @@ const Log = ({navigation}) => {
 
     const {state, actions} = useContext(AuthContext);
     console.log('Log');
-    console.log(navigation);
+    //console.log(navigation);
     
     return(
         

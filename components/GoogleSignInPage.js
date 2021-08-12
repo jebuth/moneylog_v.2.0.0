@@ -133,35 +133,83 @@ const GoogleSignInPage = () => {
 
     const getFocusedSheet = async (sheet) => {
         try{
-            console.log('getFocusedSheet');
+            console.log('getFocusedSheettttt');
+            
+            // let response = await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`);
+            // if(response.status >= 200 && response.status <= 299)
+            // {
+            //     const jsonResponse = await response.json();
+            //     console.log(jsonResponse);
+            // }else{
+            //     consolg.log(response.status, response.statusText);
+            // }
 
             await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                focusedSheet = {
-                    sheet: sheet,
-                    categories: data
+            .then((response) => {
+                if(response.status >= 200 && response.status <= 299){
+                    return response.json();
+                } else {
+                    console.log('143');
                 }
-            }).catch((error) => {
-                console.log(error.response);
-            });
-    
-            actions(
-                {
-                    type: 'setState', 
-                    payload: 
-                        {
-                            ...state, 
-                            user: googleUser,
-                            driveApi: driveApi,
-                            sheets: sheets,
-                            focusedSheet: focusedSheet,
-                            //total: '$666.66',
-                        }
             })
+            .then((jsonResponse) => {
+                    focusedSheet = {
+                    sheet: sheet,
+                    categories: jsonResponse
+                }
+
+                actions(
+                    {
+                        type: 'setState', 
+                        payload: 
+                            {
+                                ...state, 
+                                user: googleUser,
+                                driveApi: driveApi,
+                                sheets: sheets,
+                                focusedSheet: focusedSheet,
+                                //total: '$666.66',
+                            }
+                })
+
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+                
+            
+            // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            // .then(response => {
+            //     console.log('140')
+            //     response.json()
+            // })
+            // .then(data => {
+            //     console.log(data);
+            //     focusedSheet = {
+            //         sheet: sheet,
+            //         categories: data
+            //     }
+            // }).catch((error) => {
+            //     console.log('147')
+            //     console.log(error.response);
+            // });
+    
+            // actions(
+            //     {
+            //         type: 'setState', 
+            //         payload: 
+            //             {
+            //                 ...state, 
+            //                 user: googleUser,
+            //                 driveApi: driveApi,
+            //                 sheets: sheets,
+            //                 focusedSheet: focusedSheet,
+            //                 //total: '$666.66',
+            //             }
+            // })
         } catch (error){
-            console.log(error.response);
+            console.log('165')
+            console.log(error);
         }
         
     }

@@ -39,6 +39,7 @@ const SheetSelection = ({navigation}) => {
                     categories: data
                 }
             }).catch((error) => {
+                console.log('42')
                 console.log(error.response);
             });
     
@@ -54,6 +55,7 @@ const SheetSelection = ({navigation}) => {
 
             navigation.navigate('Log');
         } catch (error){
+            console.log('58')
             console.log(error);
         }
         
