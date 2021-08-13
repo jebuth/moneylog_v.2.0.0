@@ -13,10 +13,11 @@ const Form = ({props, navigation}) => {
     // console.log('Form.js');
     // console.log(navigation)
 
-    const {control, handleSubmit, formState: {errors}} = useForm();
+    const {reset, control, handleSubmit, formState: {errors}} = useForm();
     const onSubmit = async (formData, e) => {
         console.log('state')
         console.log(e.target);
+        reset({});
         fetch(`http://192.168.0.149:3000/update`, {
             method: 'POST',
             headers: {
@@ -32,7 +33,6 @@ const Form = ({props, navigation}) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            
         })
         .catch((error) => {
             console.log(error)

@@ -1,17 +1,82 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
+import {AuthContext} from '../services/AuthContext';
+import {useForm, Controller} from 'react-hook-form';
 
 const NewSheetForm = () => {
+
+    const {state, actions} = useContext(AuthContext);
+    const {reset, control, handleSubmit, formState: {errors}} = useForm();
+    const onSubmit = async (formData, e) => {
+        
+        console.log(e.target);
+        reset({});
+        fetch(`http://192.168.0.149:3000/create`, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                folderId: state.driveFolder.id,
+                name: formData.name
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let sheets = state.sheets;
+            console.log(sheets);
+            let newSheet = {
+                id: data.id,
+                title: data.name
+            }
+            console.log(newSheet)
+            sheets.push(newSheet);
+            console.log(sheets);
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            sheets: sheets,
+                        }
+            })
+            
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder='title'>
-                </TextInput>
+                <Controller
+                        control={control}
+                        rules={{
+                            required: true
+                        }}
+                        render={({field: {onChange, onBlur, value}}) => (
+                            <TextInput                
+                                style={styles.inputText}                                
+                                placeholder='title'
+                                placeholderTextColor='#E3E3E3'
+                                textAlign='left'
+                                selectTextOnFocus={true}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
+                        name="name"
+                        defaultValue=""
+                    />
+                
             </View>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
+                    onPress={handleSubmit(onSubmit)}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText}>+</Text>

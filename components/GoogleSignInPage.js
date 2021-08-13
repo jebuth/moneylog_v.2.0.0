@@ -166,6 +166,7 @@ const GoogleSignInPage = () => {
                                 ...state, 
                                 user: googleUser,
                                 driveApi: driveApi,
+                                driveFolder: driveFolder,
                                 sheets: sheets,
                                 focusedSheet: focusedSheet,
                                 //total: '$666.66',

@@ -5,6 +5,7 @@ const useGlobalState = () => {
         {
             user: null,
             driveApi: null,
+            driveFolder: null,
             sheets: [],
             focusedSheet: null,
             total: '',
