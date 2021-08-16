@@ -233,11 +233,10 @@ const GoogleSignInPage = () => {
                     focusedSheet = {
                         sheet: {
                             'id' : sheet.id,
-                            'title' : sheet.name,
+                            'title' : sheet.title,
                         },
                         categories: jsonResponse
                     }
-
                     actions(
                         {
                             type: 'setState', 
@@ -299,4 +298,5 @@ const styles = StyleSheet.create({
 });
 
 export default GoogleSignInPage;
+
 

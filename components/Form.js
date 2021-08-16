@@ -6,6 +6,7 @@ import { useEffect, __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'r
 import {AuthContext} from '../services/AuthContext';
 import useGlobalState from '../store/useGlobalState';
 import {useForm, Controller} from 'react-hook-form';
+//import {Picker} from '@react-native-picker/picker'; // todo: uninstall this
 
 const Form = ({props, navigation}) => {
     const {state, actions} = useContext(AuthContext);
@@ -50,6 +51,8 @@ const Form = ({props, navigation}) => {
     const [categoryTextFocused, setCategoryTextFocused] = useState(false);
 
     
+
+    
     return (
         <>
         
@@ -71,6 +74,7 @@ const Form = ({props, navigation}) => {
                             onFocus={() => setAmountTextFocused(true)}
                             onChangeText={onChange}
                             value={value}
+                            keyboardType='numeric'
                         />
                     )}
                     name="amount"
@@ -93,6 +97,7 @@ const Form = ({props, navigation}) => {
                             onFocus={() => setDescriptionTextFocused(true)}
                             onChangeText={onChange}
                             value={value}
+                            autoCorrect={false}
                         />
                     )}
                     name="description"
@@ -155,6 +160,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: '#282828',
     },
+    
     amountInputFocused:{
         fontSize: 16,
         color: '#E3E3E3',
