@@ -79,10 +79,6 @@ const GoogleSignInPage = () => {
     }
 
     const getFolder = async (driveApi) => {
-        // console.log('getFolder');
-
-        // console.log(driveApi);
-    
         try{
             let response = await driveApi.GDrive.files.list({
                 corpora: 'user',
@@ -91,27 +87,112 @@ const GoogleSignInPage = () => {
             
             if (response.files.length > 0){
                 driveFolder = response.files[0];
-
                 getSpreadSheets(driveFolder);
             }
             else{
-                // create the moneyLogExpenses folder
+                await createFolder();
             }
-            
-            
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error.response);
+        }   
+    }
+
+    const createFolder = async () => {
+        console.log('createFolder()');
+        // create the moneyLogExpenses folder
+        try{
+            let response = (await driveApi.GDrive.files.newMetadataOnlyUploader()
+            .setRequestBody({
+                name: 'moneyLogExpenses',
+                mimeType: 'application/vnd.google-apps.folder',
+                parents: ['root'],
+            })
+            .execute()
+            );
+
+            if (response){
+                //console.log(response)
+                driveFolder = response;
+                let permissionRequest = await createFolderPermissions(response);
+
+                if(permissionRequest){
+                    // pass the folder (response) to createSpreadsheet
+                    await createSpreadsheet(response);
+                }
+            } else{
+                console.log('nothing returned')
+            }
+
+        }catch (error){
+            console.log(error);
+            console.log(error.response);
+            console.log(error.status)
+        }
+    }
+
+    const createFolderPermissions = async (folder) => {
+        console.log('createFolderPermissions()')
+        
+        try{
+            let response = await driveApi.GDrive.permissions.create(
+                folder.id, 
+                null,
+                {
+                    role: 'writer',
+                    type: 'user',
+                    emailAddress: 'awesomeproject@awesomeproject-232905.iam.gserviceaccount.com'
+                }    
+            );
+
+            if(response){
+                return response;
+            }
+            else {
+                console.log('createFolderPermissions error')
+            }
+
+        } catch (error){
+            console.log('createFolderPermissions catch error');
+            console.log(error)
         }
         
     }
 
-    const getSpreadSheets = async (driveFolder) => {
-        console.log('getSpreadSheets');
+    const createSpreadsheet = async (folder) => {
+        console.log('createSpreadsheet()')
+        await fetch(`http://192.168.0.149:3000/create`, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                folderId: folder.id,
+                name: 'MONTH_YEAR'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            sheets.push({
+                'id' : data.id,
+                'title' : data.name,
+            });
+            getFocusedSheet(data);
+            
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    const getSpreadSheets = async (folder) => {
+        console.log('getSpreadSheets()');
         
         try{
             let response = await driveApi.GDrive.files.list(
                 {
-                    q: `'${driveFolder.id}' in parents and mimeType='application/vnd.google-apps.spreadsheet'`,
+                    q: `'${folder.id}' in parents and mimeType='application/vnd.google-apps.spreadsheet'`,
                     orderBy: 'modifiedTime desc'
                 });
             if(response.files.length > 0){
@@ -133,17 +214,7 @@ const GoogleSignInPage = () => {
 
     const getFocusedSheet = async (sheet) => {
         try{
-            console.log('getFocusedSheettttt');
-            
-            // let response = await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`);
-            // if(response.status >= 200 && response.status <= 299)
-            // {
-            //     const jsonResponse = await response.json();
-            //     console.log(jsonResponse);
-            // }else{
-            //     consolg.log(response.status, response.statusText);
-            // }
-
+            console.log('getFocusedSheet()');
             await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
             .then((response) => {
                 if(response.status >= 200 && response.status <= 299){
@@ -153,61 +224,39 @@ const GoogleSignInPage = () => {
                 }
             })
             .then((jsonResponse) => {
-                    focusedSheet = {
-                    sheet: sheet,
-                    categories: jsonResponse
-                }
 
-                actions(
-                    {
-                        type: 'setState', 
-                        payload: 
-                            {
-                                ...state, 
-                                user: googleUser,
-                                driveApi: driveApi,
-                                driveFolder: driveFolder,
-                                sheets: sheets,
-                                focusedSheet: focusedSheet,
-                                //total: '$666.66',
-                            }
-                })
+                    console.log('sheet');
+                    console.log(sheet);
+                    console.log('jsonResponse')
+                    console.log(jsonResponse)
+
+                    focusedSheet = {
+                        sheet: {
+                            'id' : sheet.id,
+                            'title' : sheet.name,
+                        },
+                        categories: jsonResponse
+                    }
+
+                    actions(
+                        {
+                            type: 'setState', 
+                            payload: 
+                                {
+                                    ...state, 
+                                    user: googleUser,
+                                    driveApi: driveApi,
+                                    driveFolder: driveFolder,
+                                    sheets: sheets,
+                                    focusedSheet: focusedSheet,
+                                }
+                    })
 
             })
             .catch((error) => {
                 console.log(error);
             });
-                
             
-            // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
-            // .then(response => {
-            //     console.log('140')
-            //     response.json()
-            // })
-            // .then(data => {
-            //     console.log(data);
-            //     focusedSheet = {
-            //         sheet: sheet,
-            //         categories: data
-            //     }
-            // }).catch((error) => {
-            //     console.log('147')
-            //     console.log(error.response);
-            // });
-    
-            // actions(
-            //     {
-            //         type: 'setState', 
-            //         payload: 
-            //             {
-            //                 ...state, 
-            //                 user: googleUser,
-            //                 driveApi: driveApi,
-            //                 sheets: sheets,
-            //                 focusedSheet: focusedSheet,
-            //                 //total: '$666.66',
-            //             }
-            // })
         } catch (error){
             console.log('165')
             console.log(error);

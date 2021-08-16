@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'column',
         alignItems: 'center',
+        
         // paddingTop: 10
     },
     amountInput: {
@@ -171,13 +172,13 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2
         }
-
     },
     button: {
         justifyContent: 'center',
-        backgroundColor: '#44D4A4', // bright
+        //backgroundColor: '#44D4A4', // bright
         //backgroundColor: '#477D6E', // mid
         //backgroundColor: '#2d5248',
+        backgroundColor: '#36b592', // test
         borderRadius: 50,
         width: '50%',
         height: 50,

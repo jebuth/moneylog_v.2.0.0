@@ -148,12 +148,13 @@ const styles = StyleSheet.create({
     signOutButton:{
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#282828',
+        //backgroundColor: '#282828',
         height: 50,
         bottom: 50,
         width: '100%',
         borderRadius: 10,
         borderColor: '#E3E3E3',
+        
         borderWidth: 1
     },
     signOutText:{

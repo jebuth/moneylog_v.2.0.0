@@ -9,6 +9,7 @@ const Log = ({navigation}) => {
 
     const {state, actions} = useContext(AuthContext);
     console.log('Log');
+    console.log(state);
     //console.log(navigation);
     
     return(
@@ -45,20 +46,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor: '#000',
-    padding: 10,
+    backgroundColor: '#000', // original
+    
+    padding: 5,
     
    },
    headerContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#121212',
+    backgroundColor: '#121212',// original
     borderRadius: 20,
     
    },
    formContainer:{
     flex: 2,
-    backgroundColor: '#121212',
+    backgroundColor: '#121212', // original
     justifyContent: 'center',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -68,9 +70,7 @@ const styles = StyleSheet.create({
    },
    transactionsContainer: {
     flex: 2,
-    backgroundColor: '#121212',
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
+    backgroundColor: '#121212', // original
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     paddingBottom: 40,

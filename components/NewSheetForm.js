@@ -13,7 +13,7 @@ const NewSheetForm = () => {
         
         console.log(e.target);
         reset({});
-        fetch(`http://192.168.0.149:3000/create`, {
+        await fetch(`http://192.168.0.149:3000/create`, {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',

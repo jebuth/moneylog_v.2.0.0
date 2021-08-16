@@ -37,14 +37,20 @@ const styles = StyleSheet.create({
         
     },
     transaction:{
-        paddingTop: 10,
-        paddingBottom: 10,
+        paddingTop: 12,
+        paddingBottom: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
         margin: 2,
-        borderRadius: 10,
-        backgroundColor: '#181818'
+        borderRadius: 8,
+        backgroundColor: '#181818',
+        shadowOpacity: 1.8,
+        shadowRadius: 1,
+        shadowOffset: {
+            width: 1,
+            height: 1
+        }
         
     },
     categoryText:{
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
     amountText:{
         fontWeight: 'bold',
         fontSize: 16,
-        color: '#Ca3e47',
+        color: '#CA3E47',
     }
 
     
