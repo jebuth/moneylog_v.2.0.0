@@ -4,8 +4,8 @@ import transactions from './TransactionsDb';
 
 const Transaction = (props) => {
 
-    console.log('Transaction');
-    console.log(props)
+    // console.log('Transaction');
+    // console.log(props)
     const TransactionItem = ({item}) => {
         return (
             <View style={styles.transaction}>

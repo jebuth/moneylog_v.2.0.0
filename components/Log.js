@@ -26,7 +26,7 @@ const Log = ({navigation}) => {
                     </View>
 
                     <View style={styles.formContainer}>
-                        <Form navigation={navigation}/>
+                        <Form transactions={state.focusedSheet} navigation={navigation}/>
                     </View>
 
                     <View style={styles.transactionsContainer}>

@@ -161,7 +161,9 @@ const GoogleSignInPage = () => {
 
     const createSpreadsheet = async (folder) => {
         console.log('createSpreadsheet()')
-        await fetch(`http://192.168.0.149:3000/create`, {
+        // await fetch(`http://192.168.0.149:3000/create`, {
+            await fetch(`http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/create`, {
+            
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
@@ -214,8 +216,10 @@ const GoogleSignInPage = () => {
 
     const getFocusedSheet = async (sheet) => {
         try{
-            console.log('getFocusedSheet()');
-            await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            console.log(`getFocusedSheet(${sheet.id})`);
+            // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            await fetch(`http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/categories?ssid=${sheet.id}`)
+            // await fetch('http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/categories?ssid=1RpTV9ZdgwqgtdbdA3Tbr8mzkGwWQ5xfOLc2k4iXdEzs')            
             .then((response) => {
                 if(response.status >= 200 && response.status <= 299){
                     return response.json();

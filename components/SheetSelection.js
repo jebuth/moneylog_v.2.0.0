@@ -30,7 +30,8 @@ const SheetSelection = ({navigation}) => {
             console.log('getFocusedSheet');
 
             let focusedSheet = null;
-            await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
+            await fetch(`http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/categories?ssid=${sheet.id}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -124,8 +125,8 @@ const styles = StyleSheet.create({
     // borderWidth: 1
    },
    sheetItem:{
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 14,
+    paddingBottom: 14,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
@@ -142,6 +143,8 @@ const styles = StyleSheet.create({
     
     sheetButton:{
         width: '100%',
+        height: '100%',
+        // backgroundColor: 'pink'
         // borderColor: 'pink',
         // borderWidth: 2
     },
