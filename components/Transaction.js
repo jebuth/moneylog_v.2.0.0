@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         
+        
     },
     transaction:{
         paddingTop: 12,

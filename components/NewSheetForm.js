@@ -5,7 +5,7 @@ import {useForm, Controller} from 'react-hook-form';
 
 const NewSheetForm = () => {
 
-    const {state, actions} = useContext(AuthContext);
+    const {state, theme, actions} = useContext(AuthContext);
     const {reset, control, handleSubmit, formState} = useForm({mode: "onChange"});
     const [nameInputFocused, setNameInputFocused] = useState(false);
 
@@ -53,7 +53,7 @@ const NewSheetForm = () => {
         <>
         <View style={styles.headerBuffer}></View>
         <View style={styles.container}>
-            <View style={styles.inputContainer}>
+            <View style={theme.darkMode ? styles.inputContainer_Dark : styles.inputContainer}>
                 <Controller
                         control={control}
                         rules={{
@@ -61,9 +61,10 @@ const NewSheetForm = () => {
                         }}
                         render={({field: {onChange, value}}) => (
                             <TextInput                
-                                style={nameInputFocused ? styles.inputTextFocused : styles.inputText}                                
+                                // style={nameInputFocused ? styles.inputTextFocused : styles.inputText}                                
+                                style={theme.darkMode ? styles.inputText_Dark : styles.inputText}
                                 placeholder='title'
-                                placeholderTextColor='#E3E3E3'
+                                placeholderTextColor= {theme.darkMode ? '#E1E0E6' : '#23273C'}
                                 textAlign='left'
                                 selectTextOnFocus={true}
                                 onBlur={() => setNameInputFocused(false)}
@@ -80,7 +81,8 @@ const NewSheetForm = () => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     onPress={handleSubmit(onSubmit)}
-                    style={!formState.isValid ? styles.buttonDisabled : styles.button}
+                    // style={!formState.isValid ? styles.buttonDisabled : styles.button}
+                    style={theme.darkMode ? styles.button_Dark : styles.button}
                     disabled={!formState.isValid}
                 >
                     <Text style={styles.buttonText}>+</Text>
@@ -96,9 +98,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',  
+        marginLeft: 10,
+        marginRight: 10
     },
     inputContainer: {
-        backgroundColor: '#282828',
+        borderWidth: 1,
+        borderColor: '#23273C', 
+        borderRadius: 10,
+        flex: 6,
+    },
+    inputContainer_Dark: {
+        borderWidth: 1,
+        borderColor: '#E1E0E6',
         borderRadius: 10,
         flex: 6,
     },
@@ -106,51 +117,65 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
         color: '#E3E3E3',
-        borderRadius: 10,
-        borderColor: '#E3E3E3',
-        borderWidth: 1,
-        height: '100%',
+        height: 50,
         width: '100%',
         paddingLeft: 10
     },
     inputText:{
         fontWeight: 'bold',
         fontSize: 16,
-        color: '#E3E3E3',
-        height: '100%',
+        color: '#23273C', // pallete side bar
+        height: 50,
+        width: '100%',
+        paddingLeft: 10
+        
+    },
+    inputText_Dark:{
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#E1E0E6',
+        height: 50,
         width: '100%',
         paddingLeft: 10
         
     },
     buttonContainer: {
         flex: 1,
-        backgroundColor: '#44D4A4',
         marginLeft: 'auto',
-        //width: '5%',
         borderRadius: 10,
-        // justifyContent: 'center',
-        // alignItems: 'center'
     },
     button:{
-        backgroundColor: '#44D4A4',
-        height: '100%',
+        //backgroundColor: '#F7F7FA', // formContainer
+        backgroundColor: 'black', // formContainer
+        height: 50,
         width: '100%',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#E3E3E3',
-        borderWidth: 1
+        // borderColor: '#23273C', 
+        // borderWidth: 1
     },
-    buttonDisabled: {
-        backgroundColor: '#282828',
-        height: '100%',
+    button_Dark:{
+        backgroundColor: '#2D3146',
+        backgroundColor: 'black',
+        height: 50,
         width: '100%',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#E3E3E3',
-        borderWidth: 1
+        // borderColor: '#E3E3E3',
+        // borderWidth: 1
     },
+    // buttonDisabled: {
+    //     backgroundColor: '#282828',
+    //     height: 50,
+    //     width: '100%',
+    //     borderRadius: 10,
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     borderColor: '#E3E3E3',
+    //     borderWidth: 1
+    // },
     buttonText:{
         color: '#e3e3e3',
         fontWeight: 'bold',

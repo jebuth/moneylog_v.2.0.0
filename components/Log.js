@@ -57,24 +57,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#2D3146' // made up darker blue
    },
    headerContainer: {
-    flex: 1,
+    //flex: 1,
+    minHeight: 150,
+    maxHeight: 150,
     justifyContent: 'center',
     backgroundColor: '#F7F7FA', // formContainer
     borderRadius: 20,
    },
    headerContainer_Dark: {
-    flex: 1,
+    //flex: 1,
+    minHeight: 150,
+    maxHeight: 150,
     justifyContent: 'center',
     backgroundColor: '#2D3146', // made up darker blue
-    borderRadius: 20,
+    borderRadius: 30,
    },
    formContainer:{
     flex: 2,
-    backgroundColor: '#E1E0E6', // headerContainer
+    backgroundColor: '#E1E0E6', 
     justifyContent: 'center',
     borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    top: 10,
+    //top: 10,
     shadowOpacity: 1.8,
     shadowRadius: 5,
     shadowOffset: {
@@ -86,9 +89,8 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: '#23273C', // palette blue
     justifyContent: 'center',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    top: 10,
+    borderTopLeftRadius: 20,
+    //top: 10,
     shadowOpacity: 1.8,
     shadowRadius: 5,
     shadowOffset: {
@@ -100,15 +102,11 @@ const styles = StyleSheet.create({
     flex: 2,
     //backgroundColor: '#F7F7FA', // palette background
     backgroundColor: '#E1E0E6', // headerContainer tseting
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
     paddingBottom: 40,
    },
    transactionsContainer_Dark: {
     flex: 2,
     backgroundColor: '#23273C', // palette blue
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
     paddingBottom: 40,
    }
 });

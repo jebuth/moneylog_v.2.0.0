@@ -8,7 +8,7 @@ import {AuthContext} from '../services/AuthContext';
 const SheetSelection = ({navigation}) => {
     
     //const {signOut} = useContext(AuthContext);
-    const {state, actions} = useContext(AuthContext);
+    const {state, theme, actions} = useContext(AuthContext);
     const signOut = () => {
         console.log('SheetSelection.signOut');
         actions(
@@ -64,12 +64,12 @@ const SheetSelection = ({navigation}) => {
 
     const SheetItem = ({item}) => {
         return (
-            <View style={styles.sheetItem}>
+            <View style={theme.darkMode ? styles.sheetItem_Dark : styles.sheetItem}>
                 <TouchableOpacity 
                     style={styles.sheetButton}
                     onPress={() => {getFocusedSheet(item)}}
                     >
-                    <Text style={styles.sheetText}>{item.title}</Text>
+                    <Text style={theme.darkMode ? styles.sheetText_Dark : styles.sheetText}>{item.title}</Text>
                 </TouchableOpacity>
                 
             </View>
@@ -77,53 +77,88 @@ const SheetSelection = ({navigation}) => {
     }
     
     return(
-        <View style={styles.container}>
-            <View style={styles.headerContainer}>
+        <View style={theme.darkMode ? styles.container_Dark : styles.container}>
+            <View style={theme.darkMode ? styles.headerContainer_Dark : styles.headerContainer}>
                 <NewSheetForm />
             </View>
-            {/* <TouchableOpacity style={styles.button} onPress={signOut}></TouchableOpacity> */}
-            <FlatList 
-            style={styles.listContainer}
-            data={state.sheets}
-            renderItem={SheetItem}
-            keyExtractor={(sheet) => sheet.id}/>
-            <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
-                <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
+            <View style={theme.darkMode ? styles.bodyContainer_Dark : styles.bodyContainer}>
+                <FlatList 
+                style={styles.listContainer}
+                data={state.sheets}
+                renderItem={SheetItem}
+                keyExtractor={(sheet) => sheet.id}/>
+                <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
+                    <Text style={styles.signOutText}>Sign Out</Text>
+                </TouchableOpacity>
+            </View>
+            
         </View>
     );    
 }
 
 const styles = StyleSheet.create({
-    button:{
-        height: 100,
-        width: 100,
-        backgroundColor: 'white'
-    },
+    
    container:{
        display: 'flex',
        width: '100%',
        height: '100%',
-       backgroundColor: '#000',
-       padding: 10,
        alignContent: 'space-between',
+       backgroundColor: '#F7F7FA',
        //marginTop: 50 // leave space for statusBar
    },
+   container_Dark:{
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        alignContent: 'space-between',
+        backgroundColor: '#2D3146', // made up darker blue
+        //marginTop: 50 // leave space for statusBar
+    },
    headerContainer: {
-        flex: .09,
-        justifyContent: 'center'
+        //flex: 1,
+        minHeight: 150,
+        maxHeight: 150,
+        justifyContent: 'center',
+        backgroundColor: '#F7F7FA', // formContainer
+
    },
+   headerContainer_Dark: {
+        //flex: 1,
+        minHeight: 150,
+        maxHeight: 150,
+        justifyContent: 'center',
+        backgroundColor: '#2D3146', // made up darker blue
+   },
+   bodyContainer: {
+        flex: 4,
+        backgroundColor: '#E1E0E6', 
+        borderTopRightRadius: 20,
+        shadowOpacity: 1.8,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 1,
+            height: 1
+        }
+   },
+   bodyContainer_Dark: {
+    flex: 4,
+    backgroundColor: '#23273C', // palette blue
+    borderTopRightRadius: 20,
+    shadowOpacity: 1.8,
+    shadowRadius: 5,
+    shadowOffset: {
+        width: 1,
+        height: 1
+    }
+},
    listContainer:{
     marginTop: 20,
     marginBottom: 100,
-    
+    marginLeft: 10,
+    marginRight:10,
     flex: 1,
-    width: '100%',
     flexDirection: 'column',
     borderRadius: 10,
-    
-    // borderColor: 'pink',
-    // borderWidth: 1
    },
    sheetItem:{
     paddingTop: 14,
@@ -133,37 +168,61 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 2,
     borderRadius: 10,
-    backgroundColor: '#181818'
+    backgroundColor: '#E1E0E6', 
+    shadowOpacity: 1.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            width: 1,
+            height: 1
+        }
 
     },
+    sheetItem_Dark:{
+        paddingTop: 14,
+        paddingBottom: 14,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+        margin: 2,
+        borderRadius: 10,
+        backgroundColor: '#23273C', // palette blue
+        shadowOpacity: 1.8,
+            shadowRadius: 2,
+            shadowOffset: {
+                width: 1,
+                height: 1
+            }
+    
+        },
     sheetText:{
         fontWeight: 'bold',
         fontSize: 16,
-        color: '#C3C3C3', // good white
+        color: '#23273C', // pallete side bar
     },
-    
+    sheetText_Dark:{
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#E1E0E6', // palette Date
+    },
     sheetButton:{
         width: '100%',
         height: '100%',
-        // backgroundColor: 'pink'
-        // borderColor: 'pink',
-        // borderWidth: 2
     },
     signOutButton:{
         justifyContent: 'center',
         alignItems: 'center',
-        //backgroundColor: '#282828',
         height: 50,
-        bottom: 50,
-        width: '100%',
+        bottom: 40,
+        marginLeft: 10,
+        marginRight: 10,
         borderRadius: 10,
-        borderColor: '#E3E3E3',
-        
-        borderWidth: 1
+        borderColor: '#E15460', // palette red
+        borderWidth: 2
     },
     signOutText:{
         fontWeight: 'bold',
-        color: 'white'
+        fontSize: 16,
+        color: '#E15460' // palette red
     }
 });
 
