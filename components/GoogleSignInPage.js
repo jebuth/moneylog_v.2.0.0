@@ -217,23 +217,16 @@ const GoogleSignInPage = () => {
     const getFocusedSheet = async (sheet) => {
         try{
             console.log(`getFocusedSheet(${sheet.id})`);
-            // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
             await fetch(`http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/categories?ssid=${sheet.id}`)
-            // await fetch('http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/categories?ssid=1RpTV9ZdgwqgtdbdA3Tbr8mzkGwWQ5xfOLc2k4iXdEzs')            
             .then((response) => {
                 if(response.status >= 200 && response.status <= 299){
                     return response.json();
+                    //console.log(status)
                 } else {
-                    console.log('143');
+                    //console.log('143');
                 }
             })
             .then((jsonResponse) => {
-
-                    console.log('sheet');
-                    console.log(sheet);
-                    console.log('jsonResponse')
-                    console.log(jsonResponse)
-
                     focusedSheet = {
                         sheet: {
                             'id' : sheet.id,
@@ -257,10 +250,12 @@ const GoogleSignInPage = () => {
 
             })
             .catch((error) => {
+                Alert.alert(error);
                 console.log(error);
             });
             
         } catch (error){
+            Alert.alert(error);
             console.log('165')
             console.log(error);
         }

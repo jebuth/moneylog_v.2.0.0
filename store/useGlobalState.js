@@ -12,19 +12,27 @@ const useGlobalState = () => {
         }
     );
 
+    const [theme, setTheme] = useState(
+       {
+           darkMode: true
+       }
+    );
+
     const actions = (action) => {
         const {type, payload} = action;
-        console.log('actions');
-        console.log(payload);
+        // console.log('actions');
+        // console.log(payload);
         switch(type){
             case 'setState':
                 return setState(payload);
+            case 'setTheme':
+                return setTheme(payload);
             default:
                 return state;
         }
     }
 
-    return {state, actions};
+    return {state, theme, actions};
 }
 
 export default useGlobalState;

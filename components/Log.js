@@ -7,7 +7,7 @@ import {AuthContext} from '../services/AuthContext';
 
 const Log = ({navigation}) => {
 
-    const {state, actions} = useContext(AuthContext);
+    const {state, theme, actions} = useContext(AuthContext);
     console.log('Log');
     console.log(state);
     //console.log(navigation);
@@ -17,19 +17,19 @@ const Log = ({navigation}) => {
         <View>
             {console.log(state.focusedSheet)}
             {state.focusedSheet !== null ?
-                <View style={styles.container}> 
-                    <View style={styles.headerContainer}>
+                <View style={theme.darkMode ? styles.container_Dark : styles.container}> 
+                    <View style={theme.darkMode ? styles.headerContainer_Dark : styles.headerContainer}>
                         <Header 
                             title={state.focusedSheet.sheet.title}
                             total={state.focusedSheet.categories[0].total}
                         />
                     </View>
 
-                    <View style={styles.formContainer}>
+                    <View style={theme.darkMode ? styles.formContainer_Dark : styles.formContainer}>
                         <Form transactions={state.focusedSheet} navigation={navigation}/>
                     </View>
 
-                    <View style={styles.transactionsContainer}>
+                    <View style={theme.darkMode ? styles.transactionsContainer_Dark : styles.transactionsContainer}>
                         <Transaction transactions={state.focusedSheet} />
                     </View>
                 </View> : 
@@ -46,35 +46,70 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor: '#000', // original
-    
-    padding: 5,
-    
+    backgroundColor: '#F7F7FA',
+   },
+   container_Dark:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#2D3146' // made up darker blue
    },
    headerContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#121212',// original
+    backgroundColor: '#F7F7FA', // formContainer
     borderRadius: 20,
-    
+   },
+   headerContainer_Dark: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#2D3146', // made up darker blue
+    borderRadius: 20,
    },
    formContainer:{
     flex: 2,
-    backgroundColor: '#121212', // original
+    backgroundColor: '#E1E0E6', // headerContainer
     justifyContent: 'center',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    top: 10
-    // borderBottomLeftRadius: 20,
-    // borderBottomRightRadius: 20
+    top: 10,
+    shadowOpacity: 1.8,
+    shadowRadius: 5,
+    shadowOffset: {
+        width: 1,
+        height: 1
+    }
+   },
+   formContainer_Dark:{
+    flex: 2,
+    backgroundColor: '#23273C', // palette blue
+    justifyContent: 'center',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    top: 10,
+    shadowOpacity: 1.8,
+    shadowRadius: 5,
+    shadowOffset: {
+        width: 1,
+        height: 1
+    }
    },
    transactionsContainer: {
     flex: 2,
-    backgroundColor: '#121212', // original
+    //backgroundColor: '#F7F7FA', // palette background
+    backgroundColor: '#E1E0E6', // headerContainer tseting
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     paddingBottom: 40,
-    
+   },
+   transactionsContainer_Dark: {
+    flex: 2,
+    backgroundColor: '#23273C', // palette blue
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    paddingBottom: 40,
    }
 });
 

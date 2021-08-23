@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
        backgroundColor: '#000',
        padding: 10,
        alignContent: 'space-between',
+       //marginTop: 50 // leave space for statusBar
    },
    headerContainer: {
         flex: .09,
