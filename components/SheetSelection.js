@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text, FlatList} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, FlatList, Alert} from 'react-native';
 import sheets from './SheetsDb';
 import NewSheetForm from './NewSheetForm';
 import SignOutButton from './SignOutButton';
@@ -10,7 +10,7 @@ const SheetSelection = ({navigation}) => {
     //const {signOut} = useContext(AuthContext);
     const {state, theme, actions} = useContext(AuthContext);
     const signOut = () => {
-        console.log('SheetSelection.signOut');
+        //console.log('SheetSelection.signOut');
         actions(
             {
                 type: 'setState', 
@@ -56,8 +56,7 @@ const SheetSelection = ({navigation}) => {
 
             navigation.navigate('Log');
         } catch (error){
-            console.log('58')
-            console.log(error);
+            Alert.alert(error);
         }
         
     }
@@ -111,7 +110,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         alignContent: 'space-between',
-        backgroundColor: '#2D3146', // made up darker blue
+        //backgroundColor: '#2D3146', // made up darker blue
+        backgroundColor: '#0c0c0c', // dark 2
         //marginTop: 50 // leave space for statusBar
     },
    headerContainer: {
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
         minHeight: 150,
         maxHeight: 150,
         justifyContent: 'center',
-        backgroundColor: '#2D3146', // made up darker blue
+        //backgroundColor: '#2D3146', // made up darker blue
+        backgroundColor: '#0c0c0c', // dark 2
    },
    bodyContainer: {
         flex: 4,
@@ -142,7 +143,8 @@ const styles = StyleSheet.create({
    },
    bodyContainer_Dark: {
     flex: 4,
-    backgroundColor: '#23273C', // palette blue
+    //backgroundColor: '#23273C', // palette blue
+    backgroundColor: '#050505', // dark 2
     borderTopRightRadius: 20,
     shadowOpacity: 1.8,
     shadowRadius: 5,
@@ -169,15 +171,15 @@ const styles = StyleSheet.create({
     margin: 2,
     borderRadius: 10,
     backgroundColor: '#E1E0E6', 
-    shadowOpacity: 1.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            width: 1,
-            height: 1
-        }
-
-    },
-    sheetItem_Dark:{
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    shadowOffset: {
+        width: 0,
+        height: 1
+    }
+},
+    sheetItem_Dark:
+    {
         paddingTop: 14,
         paddingBottom: 14,
         flexDirection: 'row',
@@ -185,15 +187,16 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 2,
         borderRadius: 10,
-        backgroundColor: '#23273C', // palette blue
-        shadowOpacity: 1.8,
-            shadowRadius: 2,
-            shadowOffset: {
-                width: 1,
-                height: 1
-            }
-    
-        },
+        //backgroundColor: '#23273C', // palette blue
+        backgroundColor: '#0c0c0c', // dark 2
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        shadowOffset: {
+            width: 0,
+            height: 1
+        }
+    },
+
     sheetText:{
         fontWeight: 'bold',
         fontSize: 16,

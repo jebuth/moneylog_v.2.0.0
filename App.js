@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer, NavigationHelpersContext, useNavigationContainerRef} from '@react-navigation/native';
 //import {createStackNavigator} from '@react-navigation/stack';
@@ -17,20 +17,21 @@ const App: () => Node = () => {
   const globalState = useGlobalState();
 
   
+  
 
   const Tab = createMaterialTopTabNavigator();
   return (
      <AuthContext.Provider value={globalState}>
-       <View style={styles.statusBar}>
+       <View style={globalState.theme.darkMode ? styles.statusBar_Dark : styles.statusBar}>
         <SafeAreaView>
-          <StatusBar backgroundColor='pink' hidden={false} barStyle='light-content'/>
+          <StatusBar hidden={false} barStyle= {globalState.theme.darkMode ? 'light-content' : 'dark-content'}/>
         </SafeAreaView>
        </View>
-      {/* <StatusBar backgroundColor='pink' hidden={false}/> */}
       <NavigationContainer>
         {globalState.state.user !== null ? (
           <Tab.Navigator
             tabBar={() => false}
+            initialRouteName="Log"
           >
             <Tab.Screen name="Log" component={Log} />
             <Tab.Screen name="SheetSelection" component={SheetSelection} />
@@ -46,10 +47,11 @@ const App: () => Node = () => {
 
 const styles = StyleSheet.create({
   statusBar: {
-   backgroundColor: '#121212' 
-  }
-
-  
+   backgroundColor: '#F7F7FA'
+  },
+  statusBar_Dark: {
+    backgroundColor: '#0c0c0c'
+   }
 });
 
 export default App;

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View, Text, ActivityIndicator} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text, ActivityIndicator, BackHandler} from 'react-native';
 import Transaction from './Transaction';
 import Form from './Form';
 import Header from './Header';
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor: '#2D3146' // made up darker blue
+    //backgroundColor: '#2D3146', // made up darker blue
+    backgroundColor: '#0c0c0c', // dark 2
    },
    headerContainer: {
     //flex: 1,
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
     minHeight: 150,
     maxHeight: 150,
     justifyContent: 'center',
-    backgroundColor: '#2D3146', // made up darker blue
+    //backgroundColor: '#2D3146', // made up darker blue
+    backgroundColor: '#0c0c0c', // dark 2
     borderRadius: 30,
    },
    formContainer:{
@@ -87,7 +89,8 @@ const styles = StyleSheet.create({
    },
    formContainer_Dark:{
     flex: 2,
-    backgroundColor: '#23273C', // palette blue
+    //backgroundColor: '#23273C', // palette blue
+    backgroundColor: '#050505', // dark 2
     justifyContent: 'center',
     borderTopLeftRadius: 20,
     //top: 10,
@@ -106,7 +109,8 @@ const styles = StyleSheet.create({
    },
    transactionsContainer_Dark: {
     flex: 2,
-    backgroundColor: '#23273C', // palette blue
+    //backgroundColor: '#23273C', // palette blue
+    backgroundColor: '#050505', // dark 2
     paddingBottom: 40,
    }
 });

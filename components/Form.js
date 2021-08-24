@@ -192,7 +192,8 @@ const pickerStyleDark = StyleSheet.create({
         height: 50,
         padding: 10,
         marginBottom: 10,
-        backgroundColor: '#2D3146' // made up darker blue
+        //backgroundColor: '#2D3146' // made up darker blue
+        backgroundColor: '#0c0c0c', // dark 2
     }
 })
 
@@ -256,7 +257,8 @@ const styles = StyleSheet.create({
         height: 50,
         padding: 10,
         marginBottom: 10,
-        backgroundColor: '#2D3146' // made up dark pallete for input
+        //backgroundColor: '#2D3146' // made up dark pallete for input
+        backgroundColor: '#0c0c0c', // dark 2
     },
     
     amountInputFocused:{

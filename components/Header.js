@@ -9,9 +9,6 @@ const Header = (props) => {
 
     //const [darkMode, setDarkMode] = useState(true); 
 
-
-    console.log('theme');
-    console.log(theme);
     
     const toggleSwitch = () => {
         //setDarkMode(!darkMode)
@@ -37,9 +34,8 @@ const Header = (props) => {
             </View>
             <View style={styles.rightCard}>
                 <Switch
-                trackColor={{ false: "#E1E0E6", true: "#C8C7CD" }}
-                // thumbColor={isEnabled ? "#c8c7cd" : "#c8c7cd"}
-                thumbColor={theme.darkMode ? "#23273C" : "#F7F7FA"}
+                trackColor={{ false: "#050505", true: "#F7F7FA" }}
+                thumbColor={theme.darkMode ? "#050505" : "#F7F7FA"}
                 ios_backgroundColor="#23273c"
                 onValueChange={toggleSwitch}
                 value={theme.darkMode}
@@ -59,28 +55,31 @@ const styles = StyleSheet.create({
         flex: 5
     },
     rightCard:{
-        flex: 1
+        flex: 1,
+        paddingRight: 10
     },
     titleText_Dark: {
-        fontSize: 28,
+        fontSize: 18,
         fontWeight: 'bold',
+        //opacity: 87,
+        //color: '#fff', // palette Date
         color: '#E1E0E6', // palette Date
         paddingLeft: 20,
     },
     titleText: {
-        fontSize: 28,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#23273C', // pallete side bar
         paddingLeft: 20,
     },
     totalText_Dark: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#E1E0E6', // palette Date
         paddingLeft: 20
     },
     totalText: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#23273C', // pallete side bar
         paddingLeft: 20

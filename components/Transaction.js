@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
         margin: 2,
         borderRadius: 8,
         backgroundColor: '#E1E0E6', // headerContainer testing
-        shadowOpacity: 1.8,
+        shadowOpacity: 0.5,
         shadowRadius: 1,
         shadowOffset: {
-            width: 1,
+            width: 0,
             height: 1
         }
     },
@@ -64,11 +64,12 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 2,
         borderRadius: 8,
-        backgroundColor: '#23273C', // palette blue
-        shadowOpacity: 1.8,
+        //backgroundColor: '#23273C', // palette blue
+        backgroundColor: '#0c0c0c', // dark 2
+        shadowOpacity: 0.5,
         shadowRadius: 1,
         shadowOffset: {
-            width: 1,
+            width: 0,
             height: 1
         }
     },
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
         color: '#E1E0E6', // palette Date
+        //color: '#fff', // dark 2
     },
     amountText:{
         fontWeight: 'bold',
