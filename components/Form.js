@@ -10,7 +10,13 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const Form = (props, {navigation}) => {
     const {state, theme, actions} = useContext(AuthContext);
-    const { reset, control, handleSubmit, setValue, formState: {errors, clearErrors, isDirty, isValid}} = useForm({mode: "onChange"});
+    const { reset, control, handleSubmit, setValue, formState: {errors, clearErrors, isDirty, isValid}} = useForm({mode: "all"});
+
+    console.log('errors');
+    console.log(errors);
+
+    console.log('Object.keys(errors).length');
+    console.log(Object.keys(errors).length);
 
     const onSubmit = async (formData, e) => {
         try{
@@ -53,8 +59,9 @@ const Form = (props, {navigation}) => {
 
             })
             .catch((error) => {
-                console.log('update error')
-                console.log(error)
+                // console.log('update error')
+                // console.log(error)
+                Alert.alert(error);
             })
             .finally(() => {
                 // setValue('amount', null, {shouldValidate: true})
@@ -63,7 +70,8 @@ const Form = (props, {navigation}) => {
                 setValue('description', null)
             }) 
         } catch (error){
-            console.log(error);
+            Alert.alert(error);
+            //console.log(error);
             //reset();
         }
         
@@ -109,7 +117,7 @@ const Form = (props, {navigation}) => {
                         />
                     )}
                     name="amount"
-                    defaultValue={null}
+                    defaultValue={''}
                 />
             
             <Controller
@@ -166,7 +174,8 @@ const Form = (props, {navigation}) => {
 
             <TouchableOpacity
                 // style={!formState.isValid ? styles.buttonDisabled : styles.button}
-                style={(errors.amount || errors.description) ? styles.buttonDisabled : styles.button}
+                // style={(errors.amount || errors.description) ? styles.buttonDisabled : styles.button}
+                style={(Object.keys(errors).length != 0) ? styles.buttonDisabled : styles.button}
             
                 onPress={handleSubmit(onSubmit)}
                 //disabled={!formState.isValid}
@@ -193,7 +202,11 @@ const pickerStyleDark = StyleSheet.create({
         padding: 10,
         marginBottom: 10,
         //backgroundColor: '#2D3146' // made up darker blue
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#2f2f30', // dark 3
+        //backgroundColor: '#0b0d12', // dark 4
+        backgroundColor: '#17181c', // dark 4 
+        
     }
 })
 
@@ -258,7 +271,11 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 10,
         //backgroundColor: '#2D3146' // made up dark pallete for input
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#2f2f30', // dark 3
+        //backgroundColor: '#0b0d12', // dark 4
+        backgroundColor: '#17181c', // dark 4 
+        
     },
     
     amountInputFocused:{
@@ -300,7 +317,9 @@ const styles = StyleSheet.create({
     },
     buttonDisabled: {
         justifyContent: 'center',
-        backgroundColor: '#2D3146', // made up dark pallete for input
+        //backgroundColor: '#2D3146', // made up dark pallete for input
+        //backgroundColor: '#2f2f30', // dark 3
+        backgroundColor: '#17181c', // dark 4 
         borderRadius: 50,
         width: '50%',
         height: 50,

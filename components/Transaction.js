@@ -36,9 +36,7 @@ const Transaction = (props) => {
 const styles = StyleSheet.create({
     container:{
         display: 'flex',
-        alignItems: 'center',
-        
-        
+        alignItems: 'center',  
     },
     transaction:{
         paddingTop: 12,
@@ -65,7 +63,10 @@ const styles = StyleSheet.create({
         margin: 2,
         borderRadius: 8,
         //backgroundColor: '#23273C', // palette blue
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#27282e', // dark 3
+        backgroundColor: '#0b0d12', // dark 4
+        
         shadowOpacity: 0.5,
         shadowRadius: 1,
         shadowOffset: {
@@ -74,13 +75,13 @@ const styles = StyleSheet.create({
         }
     },
     categoryText:{
-        paddingRight: 150,
+        paddingRight: 180,
         fontWeight: 'bold',
         fontSize: 16,
         color: '#23273C', // pallete side bar
     },
     categoryText_Dark:{
-        paddingRight: 150,
+        paddingRight: 180,
         fontWeight: 'bold',
         fontSize: 16,
         color: '#E1E0E6', // palette Date

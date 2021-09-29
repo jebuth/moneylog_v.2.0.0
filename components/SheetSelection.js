@@ -111,7 +111,10 @@ const styles = StyleSheet.create({
         height: '100%',
         alignContent: 'space-between',
         //backgroundColor: '#2D3146', // made up darker blue
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#2f2f30', // dark 3
+        //backgroundColor: '#0b0d12', // dark 4
+        backgroundColor: '#17181c', // dark 4 
         //marginTop: 50 // leave space for statusBar
     },
    headerContainer: {
@@ -128,7 +131,10 @@ const styles = StyleSheet.create({
         maxHeight: 150,
         justifyContent: 'center',
         //backgroundColor: '#2D3146', // made up darker blue
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#2f2f30', // dark 3
+        //backgroundColor: '#0b0d12', // dark 4
+        backgroundColor: '#17181c', // dark 4 
    },
    bodyContainer: {
         flex: 4,
@@ -144,8 +150,12 @@ const styles = StyleSheet.create({
    bodyContainer_Dark: {
     flex: 4,
     //backgroundColor: '#23273C', // palette blue
-    backgroundColor: '#050505', // dark 2
+    //backgroundColor: '#050505', // dark 2
+    //backgroundColor: '#27282e', // dark 3
+    
+    backgroundColor: '#0b0d12', // dark 4
     borderTopRightRadius: 20,
+
     shadowOpacity: 1.8,
     shadowRadius: 5,
     shadowOffset: {
@@ -156,8 +166,8 @@ const styles = StyleSheet.create({
    listContainer:{
     marginTop: 20,
     marginBottom: 100,
-    marginLeft: 10,
-    marginRight:10,
+    marginLeft: 20,
+    marginRight:20,
     flex: 1,
     flexDirection: 'column',
     borderRadius: 10,
@@ -188,7 +198,9 @@ const styles = StyleSheet.create({
         margin: 2,
         borderRadius: 10,
         //backgroundColor: '#23273C', // palette blue
-        backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#0c0c0c', // dark 2
+        //backgroundColor: '#27282e', // dark 3
+        backgroundColor: '#0b0d12', // dark 4
         shadowOpacity: 0.5,
         shadowRadius: 1,
         shadowOffset: {

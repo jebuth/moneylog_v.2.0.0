@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
    backgroundColor: '#F7F7FA'
   },
   statusBar_Dark: {
-    backgroundColor: '#0c0c0c'
+    //backgroundColor: '#0c0c0c'
+    backgroundColor: '#17181c', // dark 4 
    }
 });
 

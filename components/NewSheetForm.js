@@ -63,7 +63,7 @@ const NewSheetForm = () => {
                             <TextInput                
                                 // style={nameInputFocused ? styles.inputTextFocused : styles.inputText}                                
                                 style={theme.darkMode ? styles.inputText_Dark : styles.inputText}
-                                placeholder='title'
+                                placeholder='new_log'
                                 placeholderTextColor= {theme.darkMode ? '#E1E0E6' : '#23273C'}
                                 textAlign='left'
                                 selectTextOnFocus={true}
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',  
-        marginLeft: 10,
-        marginRight: 10
+        marginLeft: 20,
+        marginRight: 20
     },
     inputContainer: {
         borderWidth: 1,

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         paddingRight: 10
     },
     titleText_Dark: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         //opacity: 87,
         //color: '#fff', // palette Date
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
     },
     titleText: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         color: '#23273C', // pallete side bar
         paddingLeft: 20,

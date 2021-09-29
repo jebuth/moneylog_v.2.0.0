@@ -55,7 +55,10 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     //backgroundColor: '#2D3146', // made up darker blue
-    backgroundColor: '#0c0c0c', // dark 2
+    //backgroundColor: '#0c0c0c', // dark 2
+    //backgroundColor: '#2f2f30', // dark 3
+    
+    backgroundColor: '#17181c', // dark 4 
    },
    headerContainer: {
     //flex: 1,
@@ -71,7 +74,10 @@ const styles = StyleSheet.create({
     maxHeight: 150,
     justifyContent: 'center',
     //backgroundColor: '#2D3146', // made up darker blue
-    backgroundColor: '#0c0c0c', // dark 2
+    //backgroundColor: '#0c0c0c', // dark 2
+    //backgroundColor: '#2f2f30', // dark 3
+    
+    backgroundColor: '#17181c', // dark 4 
     borderRadius: 30,
    },
    formContainer:{
@@ -90,7 +96,12 @@ const styles = StyleSheet.create({
    formContainer_Dark:{
     flex: 2,
     //backgroundColor: '#23273C', // palette blue
-    backgroundColor: '#050505', // dark 2
+    //backgroundColor: '#050505', // dark 2
+    
+    //backgroundColor: '#27282e', // dark 3
+     
+    backgroundColor: '#0b0d12', // dark 4
+    
     justifyContent: 'center',
     borderTopLeftRadius: 20,
     //top: 10,
@@ -110,7 +121,9 @@ const styles = StyleSheet.create({
    transactionsContainer_Dark: {
     flex: 2,
     //backgroundColor: '#23273C', // palette blue
-    backgroundColor: '#050505', // dark 2
+    //backgroundColor: '#050505', // dark 2
+    //backgroundColor: '#27282e', // dark 3
+    backgroundColor: '#0b0d12', // dark 4
     paddingBottom: 40,
    }
 });

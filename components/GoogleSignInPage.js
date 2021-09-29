@@ -121,7 +121,7 @@ const GoogleSignInPage = () => {
                     await createSpreadsheet(response);
                 }
             } else{
-                console.log('nothing returned')
+                //console.log('nothing returned')
             }
 
         }catch (error){
@@ -132,7 +132,7 @@ const GoogleSignInPage = () => {
     }
 
     const createFolderPermissions = async (folder) => {
-        console.log('createFolderPermissions()')
+        //console.log('createFolderPermissions()')
         
         try{
             let response = await driveApi.GDrive.permissions.create(
@@ -149,7 +149,7 @@ const GoogleSignInPage = () => {
                 return response;
             }
             else {
-                console.log('createFolderPermissions error')
+                //console.log('createFolderPermissions error')
             }
 
         } catch (error){
@@ -189,7 +189,7 @@ const GoogleSignInPage = () => {
     }
 
     const getSpreadSheets = async (folder) => {
-        console.log('getSpreadSheets()');
+        //console.log('getSpreadSheets()');
         
         try{
             let response = await driveApi.GDrive.files.list(
@@ -207,7 +207,7 @@ const GoogleSignInPage = () => {
             }
 
             await getFocusedSheet(sheets[0]);
-            console.log('after getFocusedSheet()');
+            //console.log('after getFocusedSheet()');
             
         } catch (error){
             console.log(error.response);
@@ -264,7 +264,7 @@ const GoogleSignInPage = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.logo}>mongey_log</Text>
+            <Text style={styles.logo}>money_log</Text>
             <GoogleSigninButton
                 onPress={() => {signIn()}}
                 style={styles.button}
@@ -280,10 +280,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#000'
+        backgroundColor: '#0c0c0c'
     },
     logo: {
-        color: 'white',
+        //color: '#36b592', // green
+        color: '#E1E0E6',
         fontWeight: 'bold',
         fontSize: 30,
         bottom: 40
