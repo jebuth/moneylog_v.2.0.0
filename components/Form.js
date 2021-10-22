@@ -10,7 +10,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const Form = (props, {navigation}) => {
     const {state, theme, actions} = useContext(AuthContext);
-    const { reset, control, handleSubmit, setValue, formState: {errors, clearErrors, isDirty, isValid}} = useForm({mode: "all"});
+    const { reset, control, handleSubmit, setValue, formState: {errors, clearErrors, isDirty, isValid}} = useForm({mode:'all'});
 
     console.log('errors');
     console.log(errors);
@@ -42,11 +42,19 @@ const Form = (props, {navigation}) => {
                 }
 
                 let targetCategory = state.focusedSheet.categories.find(cat => cat.category == spendingCategory);
-                let floatTargetCategoryAmount = parseFloat(targetCategory.total.substring(1));
+                let floatTargetCategoryAmount = parseFloat(targetCategory.total.substring(1).replace(/,/g, ''));
                 let amountLogged = parseFloat(formData.amount);
-                let sheetTotalFloat = parseFloat(state.focusedSheet.categories[0].total.substring(1));
-                state.focusedSheet.categories[0].total = '$' + Math.round(sheetTotalFloat + amountLogged).toString();
-                targetCategory.total = '$' + Math.round(floatTargetCategoryAmount + amountLogged).toString();
+                let sheetTotalFloat = parseFloat(state.focusedSheet.categories[0].total.substring(1).replace(/,/g, ''));
+
+                console.log('state.focusedSheet.categories[0].total.substring(1): ' + state.focusedSheet.categories[0].total.substring(1))
+                console.log('floatTargetCategoryAmount: ' + floatTargetCategoryAmount );
+                console.log('amountLogged: ' + amountLogged);
+                console.log('sheetTotalFloat: ' + sheetTotalFloat);
+
+                console.log('setState: ' + Math.round(sheetTotalFloat + amountLogged));
+
+                state.focusedSheet.categories[0].total = '$' + Math.round(sheetTotalFloat + amountLogged).toLocaleString();
+                targetCategory.total = '$' + Math.round(floatTargetCategoryAmount + amountLogged).toLocaleString();
                 actions(
                     {
                         type: 'setState', 
