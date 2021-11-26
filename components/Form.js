@@ -7,6 +7,7 @@ import {AuthContext} from '../services/AuthContext';
 import useGlobalState from '../store/useGlobalState';
 import {useForm, Controller} from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
+import LoadingIndicator from './LoadingIndicator';
 
 const Form = (props, {navigation}) => {
     const {state, theme, actions} = useContext(AuthContext);
@@ -20,7 +21,16 @@ const Form = (props, {navigation}) => {
 
     const onSubmit = async (formData, e) => {
         try{
-            console.log('calling onSubmit')
+            
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            loading: true
+                        }
+            })
         
                 await fetch(`http://ec2-52-90-44-164.compute-1.amazonaws.com:3000/update`, {
                 method: 'POST',
@@ -61,7 +71,8 @@ const Form = (props, {navigation}) => {
                         payload: 
                             {
                                 ...state, 
-                                focusedSheet : state.focusedSheet
+                                focusedSheet : state.focusedSheet,
+                                loading: false
                             }
                 })
 
@@ -101,7 +112,7 @@ const Form = (props, {navigation}) => {
     return (
         <>
         
-            {state.driveApi !== null ? (
+            {state.driveApi !== null && !state.loading ? (
             <View style={styles.container}>
                 <Controller
                     control={control}
@@ -192,7 +203,8 @@ const Form = (props, {navigation}) => {
             </TouchableOpacity> 
             </View>
             )  : 
-                <Text style={{color: 'white'}}>Loading</Text>
+                // <Text style={{color: 'white'}}>Loading</Text>
+                <LoadingIndicator/>
             } 
         </>
     )

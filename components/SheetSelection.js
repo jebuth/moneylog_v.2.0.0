@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text, FlatList, Alert} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, FlatList, Alert, ActivityIndicator} from 'react-native';
 import sheets from './SheetsDb';
 import NewSheetForm from './NewSheetForm';
 import SignOutButton from './SignOutButton';
 import {AuthContext} from '../services/AuthContext';
+import LoadingIndicator from './LoadingIndicator';
 
 const SheetSelection = ({navigation}) => {
     
@@ -20,14 +21,23 @@ const SheetSelection = ({navigation}) => {
                         user: null,
                         ss_title: '',
                         total: '',
-                        driveApi: null
+                        driveApi: null,
+                        loading: false
                     }
         })
     }
 
     const getFocusedSheet = async (sheet) => {
         try{
-            console.log('getFocusedSheet');
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            loading: true
+                        }
+            });
 
             let focusedSheet = null;
             // await fetch(`http://192.168.0.149:3000/categories?ssid=${sheet.id}`)
@@ -51,6 +61,7 @@ const SheetSelection = ({navigation}) => {
                         {
                             ...state, 
                             focusedSheet: focusedSheet,
+                            loading: false
                         }
             });
 
@@ -80,16 +91,20 @@ const SheetSelection = ({navigation}) => {
             <View style={theme.darkMode ? styles.headerContainer_Dark : styles.headerContainer}>
                 <NewSheetForm />
             </View>
-            <View style={theme.darkMode ? styles.bodyContainer_Dark : styles.bodyContainer}>
-                <FlatList 
-                style={styles.listContainer}
-                data={state.sheets}
-                renderItem={SheetItem}
-                keyExtractor={(sheet) => sheet.id}/>
-                <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
-                    <Text style={styles.signOutText}>Sign Out</Text>
-                </TouchableOpacity>
-            </View>
+            {state.loading ? <ActivityIndicator/> : 
+            
+                <View style={theme.darkMode ? styles.bodyContainer_Dark : styles.bodyContainer}>
+                    <FlatList 
+                    style={styles.listContainer}
+                    data={state.sheets}
+                    renderItem={SheetItem}
+                    keyExtractor={(sheet) => sheet.id}/>
+                    <TouchableOpacity onPress={() => {signOut()}} style={styles.signOutButton}>
+                        <Text style={styles.signOutText}>Sign Out</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+            
             
         </View>
     );    

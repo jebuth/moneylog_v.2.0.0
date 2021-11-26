@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import {AuthContext} from '../services/AuthContext';
 import GoogleDriveApi from '../services/GoogleDriveApi';
 import { get } from 'react-native/Libraries/Utilities/PixelRatio';
+import LoadingIndicator from './LoadingIndicator';
 
 const GoogleSignInPage = () => {
 
@@ -34,6 +35,15 @@ const GoogleSignInPage = () => {
 
     const signIn = async () => {
         try{
+            actions(
+                {
+                    type: 'setState', 
+                    payload: 
+                        {
+                            ...state, 
+                            loading: true
+                        }
+            })
           //await GoogleSignin.hasPlayServices();
           await GoogleSignin.signIn()
           .then( async (data) => {
@@ -245,6 +255,7 @@ const GoogleSignInPage = () => {
                                     driveFolder: driveFolder,
                                     sheets: sheets,
                                     focusedSheet: focusedSheet,
+                                    loading: false
                                 }
                     })
 
@@ -264,6 +275,8 @@ const GoogleSignInPage = () => {
 
     return (
         <View style={styles.container}>
+            {state.loading ? <LoadingIndicator /> : 
+            <>
             <Text style={styles.logo}>money_log</Text>
             <GoogleSigninButton
                 onPress={() => {signIn()}}
@@ -271,6 +284,10 @@ const GoogleSignInPage = () => {
                 size={GoogleSigninButton.Size.Standard}
                 color={GoogleSigninButton.Color.Dark}    
             />
+            </>
+            }
+            
+            
         </View>
     )
 }
@@ -280,7 +297,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0c0c0c'
+        //backgroundColor: '#0c0c0c',
+        backgroundColor: '#17181c'
     },
     logo: {
         //color: '#36b592', // green

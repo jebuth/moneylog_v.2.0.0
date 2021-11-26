@@ -9,6 +9,7 @@ const useGlobalState = () => {
             sheets: [],
             focusedSheet: null,
             total: '',
+            loading: false
         }
     );
 

@@ -11,6 +11,15 @@ const NewSheetForm = () => {
 
     const onSubmit = async (formData, e) => {
         
+        // show spinner
+        actions({
+                type: 'setState', 
+                payload: {
+                        ...state, 
+                        loading: true
+                    }
+                })
+
         console.log(e.target);
         reset({});
         // await fetch(`http://192.168.0.149:3000/create`, {
@@ -40,6 +49,7 @@ const NewSheetForm = () => {
                         {
                             ...state, 
                             sheets: sheets,
+                            loading: false
                         }
             })
             
