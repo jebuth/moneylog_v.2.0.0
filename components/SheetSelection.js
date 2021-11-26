@@ -91,7 +91,7 @@ const SheetSelection = ({navigation}) => {
             <View style={theme.darkMode ? styles.headerContainer_Dark : styles.headerContainer}>
                 <NewSheetForm />
             </View>
-            {state.loading ? <ActivityIndicator/> : 
+            {state.loading ? <LoadingIndicator/> : 
             
                 <View style={theme.darkMode ? styles.bodyContainer_Dark : styles.bodyContainer}>
                     <FlatList 

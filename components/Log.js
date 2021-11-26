@@ -4,6 +4,7 @@ import Transaction from './Transaction';
 import Form from './Form';
 import Header from './Header';
 import {AuthContext} from '../services/AuthContext';
+import LoadingIndicator from './LoadingIndicator';
 
 const Log = ({navigation}) => {
 
@@ -25,13 +26,25 @@ const Log = ({navigation}) => {
                         />
                     </View>
 
-                    <View style={theme.darkMode ? styles.formContainer_Dark : styles.formContainer}>
-                        <Form transactions={state.focusedSheet} navigation={navigation}/>
-                    </View>
+                    {state.loading ?
+                    <> 
+                        <LoadingIndicator/> 
+                        <View style={{flex: 4}}></View> 
+                    </>: 
+                    <>
+                        <View style={theme.darkMode ? styles.formContainer_Dark : styles.formContainer}>
+                            <Form transactions={state.focusedSheet} navigation={navigation}/>
+                        </View>
 
-                    <View style={theme.darkMode ? styles.transactionsContainer_Dark : styles.transactionsContainer}>
-                        <Transaction transactions={state.focusedSheet} />
-                    </View>
+                        <View style={theme.darkMode ? styles.transactionsContainer_Dark : styles.transactionsContainer}>
+                            <Transaction transactions={state.focusedSheet} />
+                        </View>
+                    </>
+                    }
+
+                    
+
+                    
                 </View> : 
                 <ActivityIndicator/>}
             
