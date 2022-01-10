@@ -36,7 +36,7 @@ const Transaction = (props) => {
 const styles = StyleSheet.create({
     container:{
         display: 'flex',
-        alignItems: 'center',  
+        alignItems: 'center'
     },
     transaction:{
         paddingTop: 15,
