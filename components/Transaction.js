@@ -39,39 +39,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',  
     },
     transaction:{
-        paddingTop: 12,
-        paddingBottom: 12,
+        paddingTop: 15,
+        paddingBottom: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 10,
-        margin: 2,
-        borderRadius: 8,
+        padding: 35,
+        margin: 1,
         backgroundColor: '#E1E0E6', // headerContainer testing
         shadowOpacity: 0.5,
-        shadowRadius: 1,
+        shadowRadius: .5,
         shadowOffset: {
             width: 0,
-            height: 1
+            height: .5
         }
     },
     transaction_Dark:{
-        paddingTop: 12,
-        paddingBottom: 12,
+        paddingTop: 15,
+        paddingBottom: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 10,
-        margin: 2,
-        borderRadius: 8,
+        padding: 35,
+        margin: 1,
         //backgroundColor: '#23273C', // palette blue
         //backgroundColor: '#0c0c0c', // dark 2
         //backgroundColor: '#27282e', // dark 3
         backgroundColor: '#0b0d12', // dark 4
-        
         shadowOpacity: 0.5,
-        shadowRadius: 1,
+        shadowRadius: .5,
         shadowOffset: {
             width: 0,
-            height: 1
+            height: .5
         }
     },
     categoryText:{
