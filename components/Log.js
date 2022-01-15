@@ -7,10 +7,9 @@ import {AuthContext} from '../services/AuthContext';
 import LoadingIndicator from './LoadingIndicator';
 
 const Log = ({navigation}) => {
-
     const {state, theme, actions} = useContext(AuthContext);
-    console.log('Log');
-    console.log(state);
+    // console.log('Log');
+    // console.log(state);
     //console.log(navigation);
     
     return(
@@ -40,11 +39,7 @@ const Log = ({navigation}) => {
                             <Transaction transactions={state.focusedSheet} />
                         </View>
                     </>
-                    }
-
-                    
-
-                    
+                    }                    
                 </View> : 
                 <ActivityIndicator/>}
             

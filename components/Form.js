@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, TabRouter } from '@react-navigation/native';
 import React, {useContext, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, TextInput, Alert} from 'react-native';
 import { State } from 'react-native-gesture-handler';
@@ -8,20 +8,30 @@ import useGlobalState from '../store/useGlobalState';
 import {useForm, Controller} from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
 import LoadingIndicator from './LoadingIndicator';
+import { forModalPresentationIOS } from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 
 const Form = (props, {navigation}) => {
     const {state, theme, actions} = useContext(AuthContext);
     const { reset, control, handleSubmit, setValue, formState: {errors, clearErrors, isDirty, isValid}} = useForm({mode:'all'});
 
-    console.log('errors');
-    console.log(errors);
+    const [amount, setAmount] = useState('');
+    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState('');
 
-    console.log('Object.keys(errors).length');
-    console.log(Object.keys(errors).length);
+    // console.log('errors');
+    // console.log(errors);
+
+    // console.log('Object.keys(errors)');
+    // console.log(Object.keys(errors));
+    
+    // console.log('Object.keys(errors).length');
+    // console.log(Object.keys(errors).length);
 
     const onSubmit = async (formData, e) => {
         try{
             
+            console.log(formData);
+
             actions(
                 {
                     type: 'setState', 
@@ -39,8 +49,11 @@ const Form = (props, {navigation}) => {
                 },
                 body: JSON.stringify({
                     spreadsheetId: state.focusedSheet.sheet.id,
-                    amount: formData.amount,
-                    description: formData.description,
+                    // amount: formData.amount,
+                    // description: formData.description,
+                    // category: spendingCategory // don't use formData.category
+                    amount: amount,
+                    description: description,
                     category: spendingCategory // don't use formData.category
                 })
             })
@@ -51,9 +64,14 @@ const Form = (props, {navigation}) => {
                     Alert.alert(response)
                 }
 
+                console.log(response);
+
                 let targetCategory = state.focusedSheet.categories.find(cat => cat.category == spendingCategory);
                 let floatTargetCategoryAmount = parseFloat(targetCategory.total.substring(1).replace(/,/g, ''));
-                let amountLogged = parseFloat(formData.amount);
+                // let amountLogged = parseFloat(formData.amount); // redct-hook form
+                let amountLogged = parseFloat(amount);
+                console.log('amountLogged');
+                console.log(amountLogged);
                 let sheetTotalFloat = parseFloat(state.focusedSheet.categories[0].total.substring(1).replace(/,/g, ''));
 
                 console.log('state.focusedSheet.categories[0].total.substring(1): ' + state.focusedSheet.categories[0].total.substring(1))
@@ -65,6 +83,11 @@ const Form = (props, {navigation}) => {
 
                 state.focusedSheet.categories[0].total = '$' + Math.round(sheetTotalFloat + amountLogged).toLocaleString();
                 targetCategory.total = '$' + Math.round(floatTargetCategoryAmount + amountLogged).toLocaleString();
+                
+                // reset state of for, inputs
+                // setAmount(null);
+                // setDescription(null);
+                
                 actions(
                     {
                         type: 'setState', 
@@ -94,6 +117,41 @@ const Form = (props, {navigation}) => {
             //reset();
         }
         
+    }
+
+    const formHasErrors = () => {
+        console.log('formHasErrors');
+        console.log('amount');
+        console.log(amount);
+
+        console.log('description');
+        console.log(description);
+
+        //debugger;
+        if(!isEmpty(amount) && !isEmpty(description))
+            return false;
+        return true;
+    }
+
+    function isEmpty(str) {
+        return (!str || str.length === 0 );
+    }
+    // attempt at debugging why validation isn't working
+    const objectHasErrors = (object) => {
+        console.log('objectHasErrors');
+        console.log(object.keys(errors));
+
+        console.log('objectHasErrors.length');
+        console.log(object.keys(errors).length);
+
+        if(object.keys(errors).length > 0){
+            console.log('true')
+            return true;
+        }
+        else{
+            console.log('false')
+            return false;
+        }
     }
 
     const spendingCategories =  props.transactions.categories.slice(1).map(function(cat, index){
@@ -129,14 +187,15 @@ const Form = (props, {navigation}) => {
                             selectTextOnFocus={true}
                             onBlur={() => setAmountTextFocused(false)}
                             onFocus={() => setAmountTextFocused(true)}
-                            onChangeText={onChange}
+                            //onChangeText={onChange}
                             //onChangeText={(value) => setAmountInput(value)}
+                            onChangeText={(value) => setAmount(value)}
                             value={value}
                             keyboardType='numeric'
                         />
                     )}
                     name="amount"
-                    defaultValue={''}
+                    defaultValue={null}
                 />
             
             <Controller
@@ -154,7 +213,8 @@ const Form = (props, {navigation}) => {
                             selectTextOnFocus={true}
                             onBlur={() => setDescriptionTextFocused(false)}
                             onFocus={() => setDescriptionTextFocused(true)}
-                            onChangeText={onChange}
+                            //onChangeText={onChange}
+                            onChangeText={(value) => setDescription(value)}
                             value={value}
                             autoCorrect={false}
                         />
@@ -178,10 +238,11 @@ const Form = (props, {navigation}) => {
                             // selectTextOnFocus={true}
                             onBlur={() => setCategoryTextFocused(false)}
                             onFocus={() => setCategoryTextFocused(true)}
-                            onChangeText={onChange}
+                            // onChangeText={onChange}
+                            //onChangeText={(value) => setCategory(value)}
                             onValueChange={(value, index) => setSpendingCategory(value)}
                             //onValueChange={(value, index) => console.log(value)}
-                            // value={spendingCategory}
+                            value={spendingCategory}
                             //value={value}
                             items={spendingCategories}
                         />
@@ -194,10 +255,12 @@ const Form = (props, {navigation}) => {
             <TouchableOpacity
                 // style={!formState.isValid ? styles.buttonDisabled : styles.button}
                 // style={(errors.amount || errors.description) ? styles.buttonDisabled : styles.button}
-                style={(Object.keys(errors).length != 0) ? styles.buttonDisabled : styles.button}
-            
-                onPress={handleSubmit(onSubmit)}
-                //disabled={!formState.isValid}
+                //style={(Object.keys(errors).length != 0) ? styles.buttonDisabled : styles.button}
+                //style={objectHasErrors(Object) ? styles.buttonDisabled : styles.button}
+                style={formHasErrors() ? styles.buttonDisabled : styles.button}
+                onPress={handleSubmit(onSubmit)} // w react-hook-form
+                onPress={onSubmit}
+                disabled={formHasErrors()}
             >  
                 <Text style={styles.buttonText}>Spent</Text>
             </TouchableOpacity> 
@@ -339,7 +402,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         //backgroundColor: '#2D3146', // made up dark pallete for input
         //backgroundColor: '#2f2f30', // dark 3
-        backgroundColor: '#17181c', // dark 4 
+        //backgroundColor: '#17181c', // dark 4 
+        //backgroundColor: '#36b592', // green
+        backgroundColor: 'rgba(54, 181, 146, .25)' ,
+        
+        //opacity: 0.06,
         borderRadius: 50,
         width: '50%',
         height: 50,
@@ -352,7 +419,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: '#E3E3E3'
-    }
+    },
 });
 
 export default Form;
